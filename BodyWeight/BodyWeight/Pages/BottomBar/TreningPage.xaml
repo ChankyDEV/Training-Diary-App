@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:BodyWeight.Helpers"
+             mc:Ignorable="d"
+             
+             x:Class="BodyWeight.Pages.TreningPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout VerticalOptions="Start">
+                <ContentView >
+                    <Grid BackgroundColor="Indigo" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Padding="{Binding HeaderPadding}" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                          <Image Grid.Column="0" Source="https://www.iconsdb.com/icons/preview/color/FFC21C/arrow-99-xxl.png" VerticalOptions="Center" WidthRequest="20" HeightRequest="20" HorizontalOptions="StartAndExpand">
+                              <Image.GestureRecognizers>
+                                  <TapGestureRecognizer Command="{Binding PreviousDayCommand}"/>
+                              </Image.GestureRecognizers>
+                          </Image>
+                          <Label Grid.Column="1" Text="{Binding PreviousDayText}" TextColor="WhiteSmoke" FontSize="Micro" HorizontalTextAlignment="Start" VerticalTextAlignment="End" FontAttributes="Bold"/>
+                          <StackLayout Grid.Column="2">
+                              <Label Text="{Binding ActualDateText}" TextColor="#FFC21C" FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold"/>
+                              <Label Text="{Binding ActualDayText}" TextColor="WhiteSmoke" FontSize="Small" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold"/>
+                          </StackLayout>
+                         <Label  Grid.Column="3" Text="{Binding NextDayText}" TextColor="WhiteSmoke" FontSize="Micro" HorizontalTextAlignment="End" VerticalTextAlignment="End" FontAttributes="Bold"/>
+                           <Image Grid.Column="4"  Source="https://www.iconsdb.com/icons/preview/color/FFC21C/arrow-34-xxl.png" WidthRequest="20" HeightRequest="20" VerticalOptions="Center"  HorizontalOptions="EndAndExpand">
+                              <Image.GestureRecognizers>
+                                  <TapGestureRecognizer Command="{Binding NextDayCommand}"/>
+                              </Image.GestureRecognizers>
+                          </Image>
+                        
+                    </Grid>
+                </ContentView>
+            </StackLayout>
+         
+            <!--BODY-->
+            <Grid VerticalOptions="Start">
+                <controls:ClickableListView ItemsSource="{Binding Plans}" Margin="10"  ItemClickCommand="{Binding ItemClickedCommand}" VerticalScrollBarVisibility="Never" SeparatorVisibility="None" HasUnevenRows="True" VerticalOptions="Fill" >
+                    <controls:ClickableListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame BackgroundColor="WhiteSmoke" HasShadow="True" Margin="3">
+                                    <Grid Padding="5" >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="2*"/>
+                                            <ColumnDefinition Width="auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <ContentView Grid.Column="0" HorizontalOptions="CenterAndExpand" >
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding PlanName}" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontAttributes="Bold" TextColor="Indigo" FontSize="Medium" />
+                                            </StackLayout>
+                                        </ContentView>
+  
+                                        <ContentView Grid.Column="1" HeightRequest="60">
+                                            <StackLayout Orientation="Horizontal">
+                                                <BoxView BackgroundColor="DarkGray" WidthRequest="1" VerticalOptions="FillAndExpand" HorizontalOptions="Start"/>
+                                                <ListView ItemsSource="{Binding Excercises}" SeparatorVisibility="None" HasUnevenRows="True" VerticalScrollBarVisibility="Never" IsEnabled="False" SeparatorColor="Transparent" VerticalOptions="Start"   >
+                                                <ListView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <ViewCell Height="20">
+                                                            <StackLayout Orientation="Horizontal">
+                                                                <Label Text="{Binding ExcerciseName}" VerticalTextAlignment="Start"  FontSize="Micro" />
+                                                                <Label Text="{Binding Repetitions}" VerticalTextAlignment="Start"  FontSize="Micro" />
+                                                                <Label Text="x" VerticalTextAlignment="Start"  FontSize="Micro" />
+                                                                <Label Text="{Binding NumberOfSeries}" VerticalTextAlignment="Start"  FontSize="Micro" />
+                                                            </StackLayout>
+                                                        </ViewCell>
+                                                    </DataTemplate>
+                                                </ListView.ItemTemplate>
+                                            </ListView>
+                                            </StackLayout>
+                                            
+                                        </ContentView>
+                                        <ContentView Grid.Column="2">
+                                            <Image Source="right16" Aspect="AspectFit" />
+                                        </ContentView>
+                                    </Grid>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </controls:ClickableListView.ItemTemplate>
+                </controls:ClickableListView>
+            </Grid>
+            <!--BODY-->
+            <Grid VerticalOptions="End">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="{Binding WelcomeText}" Grid.Row="0"
+                       FontSize="Large"
+                       TextColor="Black"
+                       
+                       IsVisible="{Binding TextVisible}"
+                       HorizontalTextAlignment="Center"                       
+                       >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding DoSmthCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Frame Grid.Column="1" HasShadow="True" Margin="10" HeightRequest="70" CornerRadius="40" BackgroundColor="#FFC21C" HorizontalOptions="End">
+                    <Image Source="barbell">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding AddPlanCommand}" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Frame>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

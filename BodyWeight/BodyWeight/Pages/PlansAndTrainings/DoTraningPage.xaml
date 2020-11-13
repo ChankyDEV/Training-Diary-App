@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:BodyWeight.Helpers"
+             x:Class="BodyWeight.Pages.PlansAndTrainings.DoTraningPage"
+             NavigationPage.HasNavigationBar="false"
+             BackgroundColor="Indigo"
+             >
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="Indigo" Margin="20">
+
+            <StackLayout BackgroundColor="Indigo">
+                
+            </StackLayout>
+ 
+                <Frame CornerRadius="50">
+                <StackLayout>
+                    <Label Text="ToDo" TextColor="Black" FontSize="Large" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                        <controls:ClickableListView ItemsSource="{Binding Excercises}" ItemClickCommand="{Binding ItemListClickedCommand}">
+                            <controls:ClickableListView.ItemTemplate>
+                                    <DataTemplate>
+                                         <ViewCell>
+                                            <ContentView VerticalOptions="Center" >
+                                                 <Label  Text="{Binding ExcerciseName}" HorizontalTextAlignment="Center" FontSize="Medium" TextColor="Black"/>
+                                            </ContentView>
+                                         </ViewCell>
+                                    </DataTemplate>
+                            </controls:ClickableListView.ItemTemplate>
+                        </controls:ClickableListView> 
+                    </StackLayout>
+                </Frame>
+
+
+            <StackLayout >
+                <Frame CornerRadius="50" >
+                    <StackLayout>
+                        <Label Text="Done" TextColor="Black" FontSize="Large" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        <controls:ClickableListView ItemsSource="{Binding FinishedExcercises}" >
+                            <controls:ClickableListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <ContentView >
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                                                <Label  Text="{Binding ExcerciseName}" FontSize="Small" TextColor="Green"/>
+                                            </StackLayout>
+                                        </ContentView>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </controls:ClickableListView.ItemTemplate>
+                        </controls:ClickableListView>
+                        <Button Text="Save Training" Command="{Binding AcceptTrainingCommand}" TextColor="Indigo" FontAttributes="Bold"  FontSize="16" Margin="20"
+                        CornerRadius="40" BackgroundColor="#FFC21C" BorderColor="#FFC21C"  BorderWidth="2"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+
+
+            <StackLayout BackgroundColor="Indigo">
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

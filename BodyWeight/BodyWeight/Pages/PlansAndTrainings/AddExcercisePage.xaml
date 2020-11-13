@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:BodyWeight.Helpers"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="BodyWeight.Pages.PlansAndTrainings.AddExcercisePage">
+    <ContentPage.Content>
+
+        <StackLayout BackgroundColor="Indigo">
+            <StackLayout BackgroundColor="Indigo" VerticalOptions="FillAndExpand">
+                
+            </StackLayout>
+            <Frame CornerRadius="50" Margin="10" >
+                <StackLayout >
+                 <Label Text="Add your excercise" FontSize="Large" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Center" Margin="20"/>
+            <controls:MyEntry Placeholder="Excercise name" MyTintColor="Indigo" HorizontalOptions="Center" HorizontalTextAlignment="Center"
+                                   WidthRequest="160" Text="{Binding ExcerciseName}" />
+
+
+            <controls:MyEntry Placeholder="Number of series" MyTintColor="Indigo" HorizontalOptions="Center" HorizontalTextAlignment="Center"
+                                   WidthRequest="160" Text="{Binding NumberOfSeries}" />
+
+
+            <controls:MyEntry Placeholder="Repetitions" MyTintColor="Indigo" HorizontalOptions="Center" HorizontalTextAlignment="Center"
+                                   WidthRequest="160" Text="{Binding Repetitions}" />
+            
+            <Button Text="Add"  Command="{Binding AddExcerciseCommand}" TextColor="Indigo" FontAttributes="Bold"  FontSize="16" Margin="20"
+                        CornerRadius="40" BackgroundColor="#FFC21C" BorderColor="#FFC21C"  BorderWidth="2"/>
+            </StackLayout>
+            </Frame>
+            
+            <StackLayout BackgroundColor="Indigo" VerticalOptions="FillAndExpand">
+
+            </StackLayout>
+
+        </StackLayout>  
+    </ContentPage.Content>
+</ContentPage>

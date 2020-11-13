@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+            xmlns:pages="clr-namespace:BodyWeight.Pages"
+            
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+    
+            android:TabbedPage.BarSelectedItemColor="#FFC21C"
+            android:TabbedPage.BarItemColor="white"
+            mc:Ignorable="d"
+            NavigationPage.HasNavigationBar="False"
+            NavigationPage.HasBackButton="true"
+            
+            BarBackgroundColor="#4B0082"
+            
+             x:Class="BodyWeight.Pages.StartingPage">
+  <!--Pages can be added as references or inline-->
+    <pages:TreningPage Title="Trening" IconImageSource="barbell" ></pages:TreningPage>
+    <pages:CalculatorPage Title="Weight" IconImageSource="waist" ></pages:CalculatorPage>
+    <pages:MoreListPage Title="User" IconImageSource="usersmall"></pages:MoreListPage>
+</TabbedPage>

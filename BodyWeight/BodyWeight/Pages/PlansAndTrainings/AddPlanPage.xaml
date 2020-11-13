@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:BodyWeight.Helpers"
+
+             NavigationPage.HasNavigationBar="False"
+             x:Class="BodyWeight.Pages.PlansAndTrainings.AddPlanPage">
+    <ContentPage.Content >
+        <StackLayout BackgroundColor="Indigo">
+            <StackLayout BackgroundColor="Indigo">
+                
+            </StackLayout>
+            <Frame Margin="10" CornerRadius="50">
+                <StackLayout >
+                <Label Text="Add your own plan!" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center" Margin="20"  FontAttributes="Bold"/>
+                <controls:MyEntry Placeholder="Plan name" MyTintColor="Indigo" FontAttributes="Bold" HorizontalOptions="Center" WidthRequest="200" HorizontalTextAlignment="Center" Text="{Binding PlanName}"/>
+                
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <StackLayout Orientation="Horizontal">
+                        <CheckBox Color="Indigo" IsChecked="{Binding Monday}"/>
+                        <Label Text="Monday" TextColor="black" VerticalTextAlignment="Center"  >
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding TextClickMonday}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout >
+                    <StackLayout Orientation="Horizontal">
+                        <CheckBox Color="Indigo" IsChecked="{Binding Tuesday}"/>
+                        <Label Text="Tuesday" TextColor="black" VerticalTextAlignment="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding TextClickTuesday}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <CheckBox Color="Indigo" IsChecked="{Binding Wednesday}" />
+                        <Label Text="Wednesday" TextColor="black" VerticalTextAlignment="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding TextClickWednesday}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                   
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <StackLayout Orientation="Horizontal">
+                        <CheckBox Color="Indigo" IsChecked="{Binding Thursday}"/>
+                        <Label Text="Thursday" TextColor="black" VerticalTextAlignment="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding TextClickThursday}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <CheckBox Color="Indigo" IsChecked="{Binding Friday}"/>
+                        <Label Text="Friday" TextColor="black" VerticalTextAlignment="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding TextClickFriday}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" >
+                        <CheckBox Color="Indigo" IsChecked="{Binding Saturday}" />
+                        <Label Text="Saturday" TextColor="black" VerticalTextAlignment="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding TextClickSaturday}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <CheckBox Color="Indigo" IsChecked="{Binding Sunday}" />
+                    <Label Text="Sunday" TextColor="black" VerticalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding TextClickSunday}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <Button Text="Add" Command="{Binding AddExcerciseCommand}"
+                                    BackgroundColor="#4B0082" TextColor="#FFC21C" FontAttributes="Bold" FontSize="16" WidthRequest="130" CornerRadius="20" HeightRequest="35"  />
+                    <Button Text="Remove excercise" Command="{Binding RemoveCommand}"
+                                    BackgroundColor="#4B0082" TextColor="#FFC21C" FontAttributes="Bold" FontSize="16" WidthRequest="130" CornerRadius="20" HeightRequest="40"  />
+                </StackLayout>
+                
+            </StackLayout>
+            </Frame>
+            <Frame Margin="10" CornerRadius="50">
+                <StackLayout>
+                    <Label Text="Excercises" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                    <controls:ClickableListView ItemsSource="{Binding Excercises}" Margin="10"  ItemClickCommand="{Binding ItemClickedCommand}"  >
+                        <controls:ClickableListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                                        <Label TextColor="Black" FontSize="Medium" LineBreakMode="NoWrap" Text="{Binding ExcerciseName}"/>
+                                        <Label TextColor="Black" FontSize="Medium" LineBreakMode="NoWrap" Text=": "/>
+                                        <Label TextColor="Black" FontSize="Medium" LineBreakMode="NoWrap" Text="{Binding NumberOfSeries}"/>
+                                        <Label TextColor="Black" FontSize="Medium" LineBreakMode="NoWrap" Text="x"/>
+                                        <Label TextColor="Black" FontSize="Medium" LineBreakMode="NoWrap" Text="{Binding Repetitions}"/>
+                                    </StackLayout>
+
+                                </ViewCell>
+                            </DataTemplate>
+                        </controls:ClickableListView.ItemTemplate>
+                    </controls:ClickableListView>
+                    <Button Text="Add plan"  Command="{Binding AddPlanCommand}" TextColor="Indigo" FontAttributes="Bold"  FontSize="16" Margin="20"
+                        CornerRadius="40" BackgroundColor="#FFC21C" BorderColor="#FFC21C"  BorderWidth="2"/>
+                </StackLayout>
+               
+            </Frame>
+            <StackLayout BackgroundColor="Indigo">
+                
+            </StackLayout>
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

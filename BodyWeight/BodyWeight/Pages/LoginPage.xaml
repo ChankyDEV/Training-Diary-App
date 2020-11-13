@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             BackgroundImageSource="https://i.pinimg.com/originals/3e/a9/ba/3ea9ba9e84ab6808a394b6aa165c1673.jpg"
+              xmlns:controls="clr-namespace:BodyWeight.Helpers"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="BodyWeight.Pages.LoginPage">
+    <ContentPage.Content>
+        <StackLayout Padding="0" BackgroundColor="#FFC21C" Opacity="0.95">
+            
+            <Grid  VerticalOptions="CenterAndExpand">
+                <Image Source="https://www.iconsdb.com/icons/preview/indigo/arrow-214-xxl.png"/>
+            </Grid>
+            <Grid  VerticalOptions="StartAndExpand">
+                <StackLayout HorizontalOptions="FillAndExpand" Margin="{Binding LoginMargin}">
+                    <Label Text="E-mail" TextColor="Indigo" FontAttributes="Bold" FontSize="Medium"/>
+                    <controls:MyEntry MyTintColor="Indigo" Text="{Binding Email}" />
+                    <Label Text="Password" TextColor="Indigo" FontAttributes="Bold" FontSize="Medium"/>
+                    <controls:MyEntry MyTintColor="Indigo" Text="{Binding Password}" />
+                    <Label Text="Forgot password?" TextColor="Indigo" HorizontalTextAlignment="End"/>
+                    <Button Text="Login" Command="{Binding LogInCommand}"
+                            TextColor="#FFC21C" FontAttributes="Bold" CornerRadius="40" BackgroundColor="Indigo" BorderColor="Indigo" Margin="15"  BorderWidth="2"/>
+                    <Label Text="Create account" TextColor="Indigo" FontSize="Medium" HorizontalTextAlignment="Center" FontAttributes="Bold">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding GoToSignUpCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </Grid>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

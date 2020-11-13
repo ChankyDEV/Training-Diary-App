@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:controls="clr-namespace:BodyWeight.Helpers"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="BodyWeight.Pages.SignPage">
+    <ContentPage.Content>
+        <StackLayout Padding="0" BackgroundColor="GhostWhite">
+            <Grid>
+                <!--IMAGE AT THE TOP-->
+                <StackLayout Padding="0" Margin="0">
+                    <Frame HeightRequest="150" HasShadow="False" HorizontalOptions="FillAndExpand" Padding="0">
+                        <Image Source="https://wallpaperaccess.com/full/1261770.jpg" Aspect="AspectFill" Margin="0"/>
+                    </Frame>
+                </StackLayout>
+                
+                <StackLayout >
+                    <Frame  BackgroundColor="Transparent" Margin="0" Padding="10">
+                        <Image WidthRequest="30" HeightRequest="30" HorizontalOptions="Start" Source="https://image.flaticon.com/icons/png/512/271/271218.png" Aspect="Fill">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding GoBackCommand}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Frame>
+                </StackLayout>
+                
+                <StackLayout Margin="20,100,20,0" >
+                    <Frame HasShadow="true" BackgroundColor="White">
+                        <StackLayout WidthRequest="100" HeightRequest="500">
+                            <ContentView VerticalOptions="CenterAndExpand">
+                                <Label Text="REGISTER" FontAttributes="Bold" TextColor="Black" FontSize="30" HorizontalOptions="Center"/>
+                            </ContentView>
+                            <StackLayout Orientation="Vertical" Margin="{Binding MarginThreeZero}">
+                                <ContentView HorizontalOptions="Center" WidthRequest="240" >
+                                    <controls:MyEntry MyTintColor="#4B0082" Placeholder="Name" Text="{Binding Name}" HorizontalOptions="FillAndExpand" />
+                                </ContentView>
+                                <ContentView HorizontalOptions="Center" WidthRequest="240">
+                                    <controls:MyEntry MyTintColor="#4B0082" Placeholder="Surname" Text="{Binding Surname}" HorizontalOptions="FillAndExpand" />
+                                </ContentView>
+                                <ContentView HorizontalOptions="Center" WidthRequest="240">
+                                    <controls:MyEntry MyTintColor="#4B0082" Placeholder="E-mail" Text="{Binding Email}" HorizontalOptions="FillAndExpand" />
+                                </ContentView>
+                                <ContentView HorizontalOptions="Center"  WidthRequest="240" >
+                                    <controls:MyEntry MyTintColor="#4B0082" Placeholder="Password" Text="{Binding Password}" IsPassword="True" HorizontalOptions="FillAndExpand" />
+                                </ContentView>
+                            
+                              
+                                <!--<ContentView HorizontalOptions="Center" WidthRequest="240">
+                                    <controls:MyEntry MyTintColor="#4B0082" Placeholder="Age" HorizontalOptions="FillAndExpand" />
+                                </ContentView>-->
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                        <CheckBox IsChecked="False" Color="#4B0082"/>
+                                        <Label Text="Agree with our" VerticalOptions="Center" />
+                                        <Label Text="politics" VerticalOptions="Center" />
+                                    </StackLayout>
+                                </StackLayout>
+
+                            <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" Margin="20" >
+                                <Button Text="Sign up" Command="{Binding SignUpCommand}"
+                                    BackgroundColor="#4B0082" TextColor="White" FontAttributes="Bold" FontSize="16" WidthRequest="170" CornerRadius="20" HeightRequest="40"  />
+                            </StackLayout>
+                            <ContentView HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+                                <Label Text="I'm already member" FontAttributes="Bold" TextColor="#4B0082">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding GoBackCommand}"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </ContentView>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

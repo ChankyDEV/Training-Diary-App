@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="BodyWeight.Pages.MoreListPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout VerticalOptions="Start">
+                <ContentView>
+                    <Grid BackgroundColor="Indigo" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Padding="{Binding HeaderPadding}" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="0">
+                            <Label Text="Hello" TextColor="#FFC21C" FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold"/>
+                            <Label Text="bro" TextColor="WhiteSmoke" FontSize="Small" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold"/>
+                        </StackLayout>
+                        <ImageButton
+                            BackgroundColor="Indigo"
+                            Grid.Column="1"
+                            Source="moreGold"
+                            />
+                    </Grid>
+                </ContentView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

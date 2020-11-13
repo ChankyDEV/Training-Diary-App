@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:controls="clr-namespace:BodyWeight.Helpers"
+                BackgroundImageSource="https://i.pinimg.com/originals/3e/a9/ba/3ea9ba9e84ab6808a394b6aa165c1673.jpg"
+       
+             NavigationPage.HasNavigationBar="False"
+             x:Class="BodyWeight.Pages.MainPage">
+
+
+    <StackLayout Padding="0" BackgroundColor="Indigo" Opacity="0.95">
+        <Grid  VerticalOptions="CenterAndExpand">
+            <Image Source="https://www.iconsdb.com/icons/preview/color/FFC21C/arrow-214-xxl.png"/>
+        </Grid>
+        <Grid  VerticalOptions="StartAndExpand">
+            <StackLayout HorizontalOptions="FillAndExpand" Margin="{Binding LoginMargin}">
+                <Button Text="Sign Up"  Command="{Binding SignUpCommand}" TextColor="White" FontAttributes="Bold" CornerRadius="40" BackgroundColor="Transparent" BorderColor="#FFC21C"  BorderWidth="2"/>
+
+                <Button Text="Login" Command="{Binding GoToLogInCommand}" TextColor="Indigo" FontAttributes="Bold" CornerRadius="40" BackgroundColor="#FFC21C" BorderColor="#FFC21C"  BorderWidth="2"/>
+            </StackLayout>
+        </Grid>
+       
+    </StackLayout>
+
+</ContentPage>
