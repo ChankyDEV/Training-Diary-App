@@ -24,68 +24,142 @@
                         <ImageButton
                             BackgroundColor="Indigo"
                             Grid.Column="1"
-                            Source="moreGold"
-                           
+                            Source="moreGold"                         
                             />
                     </Grid>
                 </ContentView>
             </StackLayout>
-         
-                <Frame Grid.Column="0" CornerRadius="5" Padding="0" HorizontalOptions="Center" HasShadow="True"  WidthRequest="250" HeightRequest="50">
-                <Grid Padding="5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="50"/>
-                        <ColumnDefinition Width="auto"/>
-                    </Grid.ColumnDefinitions>
 
-                    <Image BackgroundColor="Transparent" Source="fitness" WidthRequest="20" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0"  />
-                    <controls:MyEntry Grid.Column="1" Placeholder="Weight" VerticalOptions="Center" Keyboard="Numeric" VerticalTextAlignment="Center"/>
-                
-                </Grid>
-            </Frame>
+            <Frame Grid.Column="0" CornerRadius="5" Margin="50,10,50,20"  VerticalOptions="Fill" HeightRequest="600" HasShadow="True"  Padding="0">
+                <Grid  >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition x:Name="GridRow" Height="*"/>
+                    </Grid.RowDefinitions>
+                    <!--TITLE-->
+                    <Label  Grid.Row="0" Text="Calculate your calories" VerticalOptions="Start" HorizontalOptions="Center" Margin="0,10,0,10" FontSize="Large"/>
+                    <!--Weight-->
+                    <StackLayout Orientation="Vertical" Grid.Row="1" >
+                        <Label Text="Weight" FontSize="Medium" FontAttributes="Bold" Padding="15,0,20,0" />
+                        <StackLayout  Orientation="Horizontal" Padding="20,0,20,0"  >
+                            <Image 
+                           BackgroundColor="Transparent" 
+                           Source="weightscale"      
+                          />
+                            <controls:MyEntry Placeholder="Weight"                                              
+                                      Keyboard="Numeric"
+                                    
+                                      FontSize="Small"
+                                      HorizontalTextAlignment="Center"
+                                      VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                        <BoxView  VerticalOptions="Start" HeightRequest="1" BackgroundColor="DarkGray" Margin="0" />
+                    </StackLayout>
+                    <!--Height-->
+                    <StackLayout Orientation="Vertical" Grid.Row="2" Margin="0,-20,0,0">
+                        <Label Text="Height" FontSize="Medium" FontAttributes="Bold" Padding="15,0,20,0" />
+                        <StackLayout  Orientation="Horizontal" Padding="20,0,20,0"  >
+                            <Image 
+                           BackgroundColor="Transparent" 
+                           Source="weightscale"      
+                          />
+                            <controls:MyEntry Placeholder="Height"                                              
+                                      Keyboard="Numeric"
+                                    
+                                      FontSize="Small"
+                                      HorizontalTextAlignment="Center"
+                                      VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                        <BoxView  VerticalOptions="Start" HeightRequest="1" BackgroundColor="DarkGray" Margin="0" />
+                    </StackLayout>
+                    <!--Age-->
+                    <StackLayout Orientation="Vertical" Grid.Row="3" Margin="0,-40,0,0" >
+                        <Label Text="Age" FontSize="Medium" FontAttributes="Bold" Padding="15,0,20,0" />
+                        <StackLayout  Orientation="Horizontal" Padding="20,0,20,0"  >
+                            <Image 
+                           BackgroundColor="Transparent" 
+                           Source="weightscale"      
+                          />
+                            <controls:MyEntry Placeholder="Age"                                              
+                                      Keyboard="Numeric"
+                                    
+                                      FontSize="Small"
+                                      HorizontalTextAlignment="Center"
+                                      VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                        <BoxView  VerticalOptions="Start" HeightRequest="1" BackgroundColor="DarkGray" Margin="0" />
+                    </StackLayout>
+                    <!--Segmented control-->
+                    <StackLayout Grid.Row="4" Margin="0,-60,0,0"  >
+                        <Label Text="Sex" FontSize="Medium" FontAttributes="Bold"  Padding="15,0,20,0"/>
+                        <Grid HorizontalOptions="Center"  >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120"/>
+                            </Grid.ColumnDefinitions>
 
-
-            <!--Segmented control-->
-            <Grid HorizontalOptions="Center" >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="40"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="120"/>
-                </Grid.ColumnDefinitions>
-
-                <Frame x:Name="SegmentedFrameBackground" Grid.Row="0" Grid.Column="0" BackgroundColor="WhiteSmoke" HasShadow="True" HorizontalOptions="FillAndExpand" CornerRadius="30" Padding="0" >
-                    <Frame BackgroundColor="Indigo" CornerRadius="30" HorizontalOptions="Start" 
+                            <Frame x:Name="SegmentedFrameBackground" Grid.Row="0" Grid.Column="0" BackgroundColor="WhiteSmoke" HasShadow="True" HorizontalOptions="FillAndExpand" CornerRadius="30" Padding="0" >
+                                <Frame BackgroundColor="Indigo" CornerRadius="30" HorizontalOptions="Start" 
                            WidthRequest="20" x:Name="SegmentedFrame"                           
                            TranslationX="{Binding SegmentedControlTranslation}" >
-                    </Frame>
-                </Frame>
-                <Grid BackgroundColor="Transparent">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" 
+                                </Frame>
+                            </Frame>
+                            <Grid BackgroundColor="Transparent">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" 
                            TextColor="#FFC21C"
                            x:Name="MaleText"
                            FontAttributes="Bold"
                            Text="Male" HorizontalOptions="Center" VerticalOptions="Center" 
                            Padding="5" >
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="SegmentedFrame_Tapped" Command="{Binding SexChangeCommand}"/>
-                        </Label.GestureRecognizers>
-                    </Label>
-                    <Label Grid.Column="1" Text="Female" x:Name="FemaleText" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" >
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="SegmentedFrame_Tapped" Command="{Binding SexChangeCommand}"/>
-                        </Label.GestureRecognizers>
-                    </Label>
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="SegmentedFrame_Tapped" Command="{Binding SexChangeCommand}"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <Label Grid.Column="1" Text="Female" x:Name="FemaleText" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" >
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="SegmentedFrame_Tapped" Command="{Binding SexChangeCommand}"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Grid>
+                        </Grid>
+                        <BoxView  VerticalOptions="Start" HeightRequest="1" BackgroundColor="DarkGray" Margin="0" />
+                    </StackLayout>
+                                     
+                    <!--Activity-->
+                    
+                      <Expander Grid.Row="5" VerticalOptions="StartAndExpand" x:Name="ActivityExpander" Margin="0,-80,0,0" ExpandAnimationLength="500" CollapseAnimationLength="500"  >
+                      <Expander.Header>
+                          <Label Text="{Binding ActivityTitle}"  FontSize="Medium" FontAttributes="Bold" Margin="0,0,0,10"  Padding="15,0,20,0"/>
+                      </Expander.Header>
+                        <controls:ClickableListView ItemsSource="{Binding Activites}" ItemClickCommand="{Binding ExpanderItemClickedCommand}" HasUnevenRows="True" VerticalScrollBarVisibility="Never"  SeparatorVisibility="None"  >
+                                <controls:ClickableListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Label Text="{Binding}" Margin="20,0,0,5" HorizontalOptions="Start" VerticalOptions="Start"/>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </controls:ClickableListView.ItemTemplate>
+                            </controls:ClickableListView>
+                        </Expander>
+                    <Image x:Name="ImageUnderExpander" Source="fitness" HorizontalOptions="Center" VerticalOptions="Start" Grid.Row="5"/>
+                    
+                  
                 </Grid>
-            </Grid>
+               
+            </Frame>
 
+            <Button Text="go" HorizontalOptions="Center" Margin="0,0,0,20"/>
 
-            <Label Text="{Binding CaloriesText}" HorizontalTextAlignment="Center" TextColor="Black" FontAttributes="Bold" FontSize="Title"/>
-            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

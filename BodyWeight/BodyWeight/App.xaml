@@ -10,6 +10,11 @@
         <Style TargetType="Label" x:Key="BodyFont">
             <Setter Property="FontSize" Value="20"/>
         </Style>
+        <Style TargetType="Slider" x:Key="CustomSlider">
+            <Setter Property="BackgroundColor" Value="Transparent"/>
+            <Setter Property="MaximumTrackColor" Value="Indigo"/>
+            <Setter Property="MinimumTrackColor" Value="#FFC21C"/>
+        </Style>
         
     </Application.Resources>
 </Application>

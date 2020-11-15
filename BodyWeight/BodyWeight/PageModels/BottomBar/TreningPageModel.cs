@@ -100,40 +100,7 @@ namespace BodyWeight.PageModels
         });
         #endregion
 
-        async private void GetProfileInformationAndRefreshToken()
-        {
-            var authProvider = new FirebaseAuthProvider(new FirebaseConfig(webApiKey));        
-            try
-            {
-                var savedFirebaseAuth = JsonConvert.DeserializeObject<FirebaseAuth>(Preferences.Get("MyFirebaseRefreshToken", ""));
-                var RefreshedContent = await authProvider.RefreshAuthAsync(savedFirebaseAuth);
-                Preferences.Set("MyFirebaseRefreshToken", JsonConvert.SerializeObject(RefreshedContent));
-
-                Session.UserID = savedFirebaseAuth.User.LocalId;
-             
-                
-                Session.LoggedUser =await DatabaseMethods.GetUserbyEmail(savedFirebaseAuth.User.Email);
-
-                if(Session.LoggedUser.Plans!=null)
-                {
-                    GetPlanForSpecficDay();
-                }
-                else
-                {
-                    Session.LoggedUser.Plans = new List<Plan>();
-                    Session.LoggedUser.Trainings = new List<Training>();
-                }
-                WelcomeText = $"Hello {Session.LoggedUser.Name}";
-
-                HideWelcomeText();
-                UpdateDays();
-
-            }
-            catch (Exception e)
-            {
-                await App.Current.MainPage.DisplayAlert("Alert", "GET PROFILE "+e.Message, "ok");
-            }
-        }
+     
 
         private void UpdateDays()
         {
@@ -244,24 +211,7 @@ namespace BodyWeight.PageModels
         }
 
 
-        private void HideWelcomeText()
-        {
-            Device.StartTimer(new TimeSpan(0, 0, 6), (() => {
-
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    TextVisible = false;
-                    WelcomeText = "Build your strength with us!";
-                    TextVisible = true;
-                  
-                });
-                return true;
-            }) 
-            );
-            {
-                
-            }
-        }
+     
 
         
 

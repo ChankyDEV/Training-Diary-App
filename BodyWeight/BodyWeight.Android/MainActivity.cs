@@ -18,7 +18,7 @@ namespace BodyWeight.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
-            Xamarin.Forms.Forms.SetFlags("RadioButton_Experimental");
+            Xamarin.Forms.Forms.SetFlags("RadioButton_Experimental", "Expander_Experimental");
             base.OnCreate(savedInstanceState);
             
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);

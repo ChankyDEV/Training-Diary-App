@@ -25,6 +25,8 @@
                             />
                     </Grid>
                 </ContentView>
+
+                <Button Text="Log out" Command="{Binding LogOutCommand}"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

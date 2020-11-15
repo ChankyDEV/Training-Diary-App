@@ -37,7 +37,8 @@ namespace BodyWeight
             Account acc = new Account();
             foreach (var item in allAccounts)
             {
-                if(item.Email==email)
+                var lowerEmail = item.Email.ToLower();
+                if (lowerEmail == email)
                 {
                     return item;
                 }
