@@ -23,7 +23,6 @@ namespace BodyWeight.PageModels
         #region Properties
 
              public bool TextVisible { get; set; } = true;
-             public string WelcomeText { get; set; }
              public int Day { get; set; } = DateTime.Now.Day;
              public DayOfWeek DayName { get; set; } = DateTime.Now.DayOfWeek;
              public string ActualDateText { get; set; } = DateTime.Now.ToShortDateString();
@@ -40,15 +39,6 @@ namespace BodyWeight.PageModels
         #endregion
 
         #region Commands
-
-
-
-
-      
-
-
-
-
 
         public Command NextDayCommand => new Command(() =>
         {
@@ -100,8 +90,6 @@ namespace BodyWeight.PageModels
         });
         #endregion
 
-     
-
         private void UpdateDays()
         {
             int localPreviousDay = Day-1;
@@ -113,7 +101,6 @@ namespace BodyWeight.PageModels
             PreviousDayText = PreviousdateTime.DayOfWeek.ToString();
             NextDayText = NextdateTime.DayOfWeek.ToString();
         }
-
 
 
         #region Methods for data comunication
@@ -170,7 +157,6 @@ namespace BodyWeight.PageModels
             }
 
         }
-
         private ObservableCollection<Excercise> ConvertListToObservable(List<Excercise> excercises)
         {
             ObservableCollection<Excercise> list = new ObservableCollection<Excercise>();
@@ -182,7 +168,6 @@ namespace BodyWeight.PageModels
 
             return list;
         }
-
         private void ShowPlanInLabel(Plan plan)
         {
             if(Plans.Contains(plan))
@@ -196,8 +181,6 @@ namespace BodyWeight.PageModels
                   
 
         }
-
-
         public ICommand ItemClickedCommand
         {
             get
@@ -209,12 +192,6 @@ namespace BodyWeight.PageModels
                 });
             }
         }
-
-
-     
-
-        
-
 
     }
 }

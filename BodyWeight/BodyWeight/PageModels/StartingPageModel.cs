@@ -28,6 +28,8 @@ namespace BodyWeight.PageModels
             User = new Account();
 
             CreateActivitesCollection();
+
+            
         
         }
         async private void GetProfileInformationAndRefreshToken()
@@ -64,21 +66,8 @@ namespace BodyWeight.PageModels
                 Session.LoggedUser.Plans = new List<Plan>();
                 Session.LoggedUser.Trainings = new List<Training>();
             }
-            WelcomeText = $"Hello {Session.LoggedUser.Name}";
 
             UpdateDays();
-        }
-
-        protected override void ViewIsAppearing(object sender, EventArgs e)
-        {
-            base.ViewIsAppearing(sender, e);
-           
-        }
-
-        protected override void ViewIsDisappearing(object sender, EventArgs e)
-        {
-            base.ViewIsDisappearing(sender, e);
-           
         }
 
 

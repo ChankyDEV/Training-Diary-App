@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:BodyWeight.Helpers"
-             mc:Ignorable="d"
-             
+             mc:Ignorable="d"             
              x:Class="BodyWeight.Pages.TreningPage">
     <ContentPage.Content>
         <StackLayout>
@@ -98,17 +97,6 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                <Label Text="{Binding WelcomeText}" Grid.Row="0"
-                       FontSize="Large"
-                       TextColor="Black"
-                       
-                       IsVisible="{Binding TextVisible}"
-                       HorizontalTextAlignment="Center"                       
-                       >
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding DoSmthCommand}"/>
-                    </Label.GestureRecognizers>
-                </Label>
                 <Frame Grid.Column="1" HasShadow="True" Margin="10" HeightRequest="70" CornerRadius="40" BackgroundColor="#FFC21C" HorizontalOptions="End">
                     <Image Source="barbell">
                         <Image.GestureRecognizers>

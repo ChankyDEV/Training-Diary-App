@@ -15,13 +15,17 @@ namespace BodyWeight.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CalculatorPage : ContentPage
     {
-        private double startExpanderHeight;
+
         public CalculatorPage()
         {
             InitializeComponent();
-            startExpanderHeight = ActivityExpander.Height;
 
+            ActivityExpander.Tapped += ActivityExpander_Tapped;
+        }
 
+        private void ActivityExpander_Tapped(object sender, EventArgs e)
+        {
+            MessagingCenter.Send(new ExpanderEvent(),"Expander size changed");
         }
 
         protected override void OnAppearing()
@@ -29,7 +33,7 @@ namespace BodyWeight.Pages
             base.OnAppearing();
 
             MessagingCenter.Subscribe<ExpanderEvent>(this, "Expander item clicked",CollapseExpander);
-            ActivityExpander.SizeChanged += ActivityExpander_SizeChanged;
+           
 
         }
 
@@ -38,34 +42,7 @@ namespace BodyWeight.Pages
             ActivityExpander.IsExpanded = false;
         }
 
-        private void ActivityExpander_SizeChanged(object sender, EventArgs e)
-        {
 
-            var maxHeight = 186.56;
-            var startHeight = 34.4;
-
-            
-            var percent = (ActivityExpander.Height-startHeight) / (maxHeight-startHeight);
-
-            if(percent<0)
-            {
-                percent = 0;
-            }
-
-            ImageUnderExpander.Opacity = 1 -percent * 1.5;
-            ImageUnderExpander.TranslationY = 0 + percent * 70;
-
-            if (ActivityExpander.State == ExpanderState.Expanding)
-            {
-                
-            }
-            if(ActivityExpander.State == ExpanderState.Collapsing)
-            {
-
-            }
-        }
-
-       
 
         protected override void OnDisappearing()
         {

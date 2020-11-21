@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    x:Class="BodyWeight.Pages.PopUps.ActivityInfoPopUp">
+    <!--You can set an animation in the xaml file or in the csharp code behind-->
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation 
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.8"
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <!--You can use any elements here which are extended from Xamarin.Forms.View-->
+    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+        <Frame BackgroundColor="WhiteSmoke" Padding="0" HasShadow="true" CornerRadius="10" WidthRequest="350" HeightRequest="400">
+            <StackLayout Padding="10">
+                <Label Text="No activity" TextColor="Indigo" FontAttributes="Bold" FontSize="Medium"/>
+                <Label Text="Patient in bed. Really low activity." />
+
+                <Label Text="Low activity" TextColor="Indigo" FontAttributes="Bold" FontSize="Medium" />
+                <Label Text="Seated work. Minimum activity during the day." />
+                
+                <Label Text="Medium activity" TextColor="Indigo" FontAttributes="Bold" FontSize="Medium" />
+                <Label Text="Seated work with light workouts three times a week or physical work without workouts" />
+
+                <Label Text="Active lifestyle" TextColor="Indigo" FontAttributes="Bold" FontSize="Medium" />
+                <Label Text="A lot of activity during the day. Light workouts three times a week." />
+                
+                <Label Text="Really active lifestyle" TextColor="Indigo" FontAttributes="Bold" FontSize="Medium" />
+                <Label Text="Physical work. Hard systhematic workouts three times a week." />
+                
+                <Label Text="Extreamly active lifestyle" TextColor="Indigo" FontAttributes="Bold" FontSize="Medium" />
+                <Label Text="Professional sportsmanship" />
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</pages:PopupPage>
