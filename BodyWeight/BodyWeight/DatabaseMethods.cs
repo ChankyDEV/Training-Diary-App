@@ -30,7 +30,7 @@ namespace BodyWeight
         }
 
         // Method for getting data
-        async static public  Task<Account> GetUserbyEmail(string email)
+        async static public  Task<Account> GetUserbyEmail()
         {
             List<Account> accList = await GetAccount();
 

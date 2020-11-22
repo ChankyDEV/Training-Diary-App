@@ -23,7 +23,6 @@ namespace BodyWeight.PageModels
 
             GetProfileInformationAndRefreshToken();
 
-
             Plans = new ObservableCollection<Plan>();
             User = new Account();
 
@@ -42,21 +41,20 @@ namespace BodyWeight.PageModels
                 Preferences.Set("MyFirebaseRefreshToken", JsonConvert.SerializeObject(RefreshedContent));
 
                 DatabaseMethods.authID = savedFirebaseAuth.User.LocalId;
-
-                await UserFunAsync(savedFirebaseAuth.User.Email);
+                await UserFunAsync();
 
 
             }
             catch (Exception e)
             {
-                App.Current.MainPage.DisplayAlert("Alert", "GET PROFILE " + e.Message, "ok");
+                await App.Current.MainPage.DisplayAlert("Alert", "GET PROFILE " + e.Message, "ok");
             }
 
         }
-        private async System.Threading.Tasks.Task UserFunAsync(string email)
+        private async System.Threading.Tasks.Task UserFunAsync()
         {
            
-            Session.LoggedUser = await DatabaseMethods.GetUserbyEmail(email);
+            Session.LoggedUser = await DatabaseMethods.GetUserbyEmail();
             Session.LoggedUser.Plans = await DatabaseMethods.GetPlans();
             
  
@@ -74,15 +72,6 @@ namespace BodyWeight.PageModels
         }
 
 
-        private void CreateActivitesCollection()
-        {
-            Activites = new List<string>();
-            Activites.Add("No activity");
-            Activites.Add("Low activity");
-            Activites.Add("Medium activity");
-            Activites.Add("Active lifestyle");
-            Activites.Add("Really active lifestyle");
-            Activites.Add("Extreamly active lifestyle");
-        }
+       
     }
 }

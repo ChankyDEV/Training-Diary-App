@@ -31,9 +31,9 @@ namespace BodyWeight.Pages
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
-            MessagingCenter.Subscribe<ExpanderEvent>(this, "Expander item clicked",CollapseExpander);
            
+            MessagingCenter.Subscribe<ExpanderEvent>(this, "Expander item clicked",CollapseExpander);
+            resultStack.TranslationX = 450;
 
         }
 
@@ -71,6 +71,77 @@ namespace BodyWeight.Pages
             }
         }
 
-        
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            if(resultStack.TranslationX!=0)
+            {
+                resultStack.TranslateTo(0, 0, 200, Easing.SpringOut);
+            }
+            else
+            {
+                AnimateLabel();
+            } 
+        }
+
+        private void AnimateLabel()
+        {
+            Animation parentAnimation = new Animation();
+
+            parentAnimation.Add(0.00, 0.50, LabelTranslationUpAnimation());
+            parentAnimation.Add(0.20, 0.50, LabelOpacityToZeroAnimation());
+            parentAnimation.Add(0.50, 1.00, LabelTranslationDownAnimation());
+            parentAnimation.Add(0.70, 1.00, LabelOpacityToOneAnimation());
+
+            parentAnimation.Commit(this, "LabelAnimate", 16,300);
+        }
+
+        private Animation LabelTranslationDownAnimation()
+        {
+            var translationAnimation = new Animation(v => {
+
+                resultNumber.TranslationY = v;
+
+            }, 20, 0, Easing.SinIn);
+
+
+            return translationAnimation;
+        }
+
+        private Animation LabelTranslationUpAnimation()
+        {        
+
+           var translationAnimation = new Animation(v => {
+
+                resultNumber.TranslationY = v;
+            
+            }, 0, -20, Easing.SinIn);
+            
+            return translationAnimation;
+        }
+        private Animation LabelOpacityToZeroAnimation()
+        {
+
+            var opacityAnimation = new Animation(v => {
+
+                resultNumber.Opacity = v;
+
+            }, 1, 0, Easing.SinIn);
+
+
+            return opacityAnimation;
+        }
+        private Animation LabelOpacityToOneAnimation()
+        {
+
+            var opacityAnimation = new Animation(v => {
+
+                resultNumber.Opacity = v;
+
+            }, 0, 1, Easing.SinIn);
+
+
+            return opacityAnimation;
+        }
+
     }
 }

@@ -48,6 +48,7 @@
                                   <controls:MyEntry Placeholder="Write your weight"                                              
                                                 Keyboard="Numeric"                                    
                                                 FontSize="Small"
+                                                Text="{Binding Weight}"
                                                 HorizontalTextAlignment="Center"
                                                 VerticalTextAlignment="Center"/>
                               </StackLayout>
@@ -69,6 +70,7 @@
                                  <controls:MyEntry Placeholder="Write your height"                                              
                                                    Keyboard="Numeric"                                    
                                                    FontSize="Small"
+                                                   Text="{Binding Height}"
                                                    HorizontalTextAlignment="Center"
                                                    VerticalTextAlignment="Center"/>
                              </StackLayout>
@@ -89,6 +91,7 @@
                                  <controls:MyEntry Placeholder="Write your age"                                              
                                                    Keyboard="Numeric"                                    
                                                    FontSize="Small"
+                                                   Text="{Binding Age}"
                                                    HorizontalTextAlignment="Center"
                                                    VerticalTextAlignment="Center"/>
                              </StackLayout>
@@ -128,12 +131,12 @@
                                         Text="Male" HorizontalOptions="Center" VerticalOptions="Center" 
                                         Padding="5" >
                                     <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="SegmentedFrame_Tapped" Command="{Binding SexChangeCommand}"/>
+                                <TapGestureRecognizer Tapped="SegmentedFrame_Tapped" Command="{Binding GenderChangeCommand}"/>
                                     </Label.GestureRecognizers>
                                 </Label>
                             <Label Grid.Column="1" Text="Female" FontSize="Caption" x:Name="FemaleText" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" >
                                     <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="SegmentedFrame_Tapped" Command="{Binding SexChangeCommand}"/>
+                                <TapGestureRecognizer Tapped="SegmentedFrame_Tapped" Command="{Binding GenderChangeCommand}"/>
                                     </Label.GestureRecognizers>
                                 </Label>
                             </Grid>
@@ -177,9 +180,30 @@
                 </Frame>
             </StackLayout >
 
+            <StackLayout x:Name="resultStack" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand" Orientation="Horizontal" >
+                
+                <Label 
+                    x:Name="resultTextFirst"
+                    Text="You have to eat" FontAttributes="Bold" FontSize="Large"/>
+                <Label x:Name="resultNumber"
+                   Text="{Binding Result}" FontAttributes="Bold" FontSize="Large"/>
+                <Label 
+                    x:Name="resultTextSecond"
+                   Text="calories per day" FontAttributes="Bold" FontSize="Large"/>
+                
+            </StackLayout>
+           
 
-
-              <Button Text="go" HorizontalOptions="Center" VerticalOptions="EndAndExpand" Margin="0,0,0,20"/>
+            <Frame HorizontalOptions="Center" VerticalOptions="EndAndExpand" 
+                   Padding="0" HasShadow="True" Margin="0,0,0,20" CornerRadius="5" >
+                <Button Text="go"
+                        Clicked="Button_Clicked"
+                        TextColor="#FFC21C"
+                        BackgroundColor="Indigo"
+                        Command="{Binding CalculateCaloriesCommand}"
+                      />
+            </Frame>
+            
 
         </StackLayout>
     </ContentPage.Content>

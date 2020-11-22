@@ -11,6 +11,8 @@ using Xamarin.Forms.Xaml;
 using Rg.Plugins.Popup;
 using BodyWeight.Pages.PopUps;
 using Rg.Plugins.Popup.Services;
+using BodyWeight.Helpers;
+using System.Threading;
 
 namespace BodyWeight.PageModels
 {
@@ -19,26 +21,34 @@ namespace BodyWeight.PageModels
     {
 
         public List<string> Activites { get; set; }
-        public string CaloriesText { get; set; } = "Male";
+        public string Gender { get; set; } = "Male";
+        public string Result { get; set; } = "";
+        public string Weight { get; set; }
+        public string Height { get; set; }
+        public string Age { get; set; }
         public string ActivityTitle { get; set; } = "Choose your activity";
         public string PickedActivity { get; set; }
         public string ArrowExpanderSource { get; set; } = "down_arrow";
+        public Dictionary<string, double> ActivityDictionary { get; set;} 
 
-        public Command SexChangeCommand => new Command(() =>
+
+
+
+        public Command GenderChangeCommand => new Command(() =>
         {
-            if (CaloriesText == "Male")
-                CaloriesText = "Female";
+            if (Gender == "Male")
+                Gender = "Female";
             else
-                CaloriesText = "Male";
+                Gender = "Male";
         });
         public ICommand ExpanderItemClickedCommand
         {
             get
             {
-                return new Command(async (item) =>
+                return new Command( (item) =>
                 {
                     ActivityTitle = item.ToString();
-                    MessagingCenter.Send<ExpanderEvent>(new ExpanderEvent(), "Expander item clicked");
+                     MessagingCenter.Send<ExpanderEvent>(new ExpanderEvent(), "Expander item clicked");
                     ChangeExpanderIcon(new ExpanderEvent());
                 });
             }
@@ -47,15 +57,52 @@ namespace BodyWeight.PageModels
         {
             await PopupNavigation.Instance.PushAsync(new ActivityInfoPopUp());
         });
+        public Command CalculateCaloriesCommand => new Command(() =>
+        {
+        if (ActivityTitle == "Choose your activity")
+        {
+            App.Current.MainPage.DisplayAlert("Alert", "Choose your activity!", "Ok");
+        }
+        else
+        {
+            Device.StartTimer(TimeSpan.FromMilliseconds(150), () => {
 
+                 double ppm = CalculatePPM(Weight,Height,Age,Gender);
+                 double factor = ActivityFactor();
+                 double cpm = ppm * factor;
+                 Result =$"{cpm}";
 
+                return false;
+            });
+            
+         }
+          
+
+        });
+
+        private double ActivityFactor()
+        {
+            
+            return ActivityDictionary[ActivityTitle];
+        }
+
+        private double CalculatePPM(string w, string h, string a,string gender)
+        {
+            var weight = double.Parse(w);
+            var height = double.Parse(h);
+            var age = double.Parse(a);
+            int constVal = Gender == "Male" ? 5 : -161;
+
+            var result = (10 * weight) + (6.25 * height) - (5 * age) + constVal;
+
+            return result;
+        }
 
         protected override void ViewIsAppearing(object sender, EventArgs e)
         {
             base.ViewIsAppearing(sender, e);
             MessagingCenter.Subscribe<ExpanderEvent>(this, "Expander size changed", ChangeExpanderIcon);
         }
-
         protected override void ViewIsDisappearing(object sender, EventArgs e)
         {
             base.ViewIsDisappearing(sender, e);
@@ -73,7 +120,26 @@ namespace BodyWeight.PageModels
             }
             
         }
+        private void CreateActivitesCollection()
+        {
+            Activites = new List<string>();
+            Activites.Add("No activity");
+            Activites.Add("Low activity");
+            Activites.Add("Medium activity");
+            Activites.Add("Active lifestyle");
+            Activites.Add("Really active lifestyle");
+            Activites.Add("Extreamly active lifestyle");
 
-        
+            ActivityDictionary = new Dictionary<string, double>();
+            ActivityDictionary.Add(Activites[0], 1.0);
+            ActivityDictionary.Add(Activites[1], 1.2);
+            ActivityDictionary.Add(Activites[2], 1.375);
+            ActivityDictionary.Add(Activites[3], 1.55);
+            ActivityDictionary.Add(Activites[4], 1.725);
+            ActivityDictionary.Add(Activites[5], 2.0);
+
+        }
+
+
     }
 }
