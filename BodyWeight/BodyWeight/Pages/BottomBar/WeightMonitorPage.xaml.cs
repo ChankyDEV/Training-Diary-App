@@ -15,6 +15,8 @@ namespace BodyWeight.Pages.BottomBar
         public WeightMonitorPage()
         {
             InitializeComponent();
+           
+
         }
     }
 }

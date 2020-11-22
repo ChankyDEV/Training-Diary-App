@@ -55,7 +55,7 @@ namespace BodyWeight.PageModels
         }
         public Command InfoPopUpCommand => new Command(async () =>
         {
-            await PopupNavigation.Instance.PushAsync(new ActivityInfoPopUp());
+            await PopupNavigation.Instance.PushAsync(new AddMeasurmentPopUp());
         });
         public Command CalculateCaloriesCommand => new Command(() =>
         {

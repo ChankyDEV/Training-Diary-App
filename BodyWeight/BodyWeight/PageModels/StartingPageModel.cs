@@ -9,6 +9,8 @@ using Xamarin.Essentials;
 using BodyWeight.Models;
 using System.Collections.ObjectModel;
 using BodyWeight.Events;
+using OxyPlot;
+using OxyPlot.Axes;
 
 namespace BodyWeight.PageModels
 {
@@ -28,8 +30,12 @@ namespace BodyWeight.PageModels
 
             CreateActivitesCollection();
 
-            
-        
+            Model = new PlotModel();
+            XAXIS = new DateTimeAxis();
+            YAXIS = new LinearAxis();
+            CreateAxes();
+
+
         }
         async private void GetProfileInformationAndRefreshToken()
         {

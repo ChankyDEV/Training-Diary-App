@@ -1,34 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:BodyWeight.Helpers"
+             mc:Ignorable="d" 
+             xmlns:oxy="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms"
              x:Class="BodyWeight.Pages.BottomBar.WeightMonitorPage">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="4*"/>
-                <RowDefinition Height="4*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="45*"/>
+                <RowDefinition Height="45*"/>
             </Grid.RowDefinitions>
 
           <Grid BackgroundColor="Indigo" Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Padding="{Binding HeaderPadding}" >
               <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="*"/>
-                  <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="*"/>
               </Grid.ColumnDefinitions>
-              <StackLayout Grid.Column="0">
-                  <Label Text="Hello" TextColor="#FFC21C" FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold"/>
-                  <Label Text="bro" TextColor="WhiteSmoke" FontSize="Small" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold"/>
-              </StackLayout>
-              <ImageButton
-                  BackgroundColor="Indigo"
-                  Grid.Column="1"
-                  Source="moreGold"                         
-                  />
-          </Grid>
-          
+                <Label Text="Body measurements" TextColor="WhiteSmoke" FontAttributes="Bold" FontSize="Large" Margin="0,10,0,10" Grid.Column="1"
+                       VerticalTextAlignment="Center"  HorizontalTextAlignment="Center"/>
 
+                <Label Text="Add" TextColor="#FFC21C" Grid.Column="2" 
+                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center" 
+                       Margin="0,10,0,10" >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AddMeasurmentCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
 
+            <oxy:PlotView Model="{Binding Model}" Grid.Row="1"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
 
+            <Frame Grid.Row="2" Padding="0" 
+                   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                   BackgroundColor="LightYellow"
+                   HasShadow="True">
+                <Label Text="{Binding Text}" VerticalTextAlignment="Center"  HorizontalTextAlignment="Center"/>
+            </Frame>
 
         </Grid>
     </ContentPage.Content>

@@ -22,7 +22,7 @@ namespace BodyWeight.Droid
             base.OnCreate(savedInstanceState);
             Xamarin.Forms.Forms.SetFlags("RadioButton_Experimental", "Expander_Experimental", "Shapes_Experimental");
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
-
+            OxyPlot.Xamarin.Forms.Platform.Android.PlotViewRenderer.Init();
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());

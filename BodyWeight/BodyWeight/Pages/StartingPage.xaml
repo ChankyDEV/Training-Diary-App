@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-            xmlns:pages="clr-namespace:BodyWeight.Pages"           
+            xmlns:pages="clr-namespace:BodyWeight.Pages"      
+            xmlns:pagesBottom="clr-namespace:BodyWeight.Pages.BottomBar"   
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             android:TabbedPage.ToolbarPlacement="Bottom"    
             android:TabbedPage.BarSelectedItemColor="#FFC21C"
@@ -11,13 +12,15 @@
             mc:Ignorable="d"
             NavigationPage.HasNavigationBar="False"
             NavigationPage.HasBackButton="true"
-            
+            android:TabbedPage.IsSwipePagingEnabled="False"
+              android:TabbedPage.IsSmoothScrollEnabled="False"
             BarBackgroundColor="#4B0082"
             
              x:Class="BodyWeight.Pages.StartingPage">
   <!--Pages can be added as references or inline-->
     <pages:TreningPage Title="Trening" IconImageSource="barbell" ></pages:TreningPage>
-    <pages:CalculatorPage Title="Weight" IconImageSource="waist" ></pages:CalculatorPage>
+    <pagesBottom:WeightMonitorPage Title="Weight" IconImageSource="weightscale"/>
+    <pages:CalculatorPage Title="Calculator" IconImageSource="keys" ></pages:CalculatorPage>
     <pages:MoreListPage Title="User" IconImageSource="usersmall"></pages:MoreListPage>
    
 </TabbedPage>
