@@ -113,12 +113,16 @@ namespace BodyWeight.PageModels
             if(p!=null)
             {
                 Session.LoggedUser.Plans.Add(p);
-                DatabaseMethods.AddPlanToDatabase();            
+                DatabaseMethods.AddPlanToDatabase(p);            
             }
             if(t!=null)
             {
+                if (Session.LoggedUser.Trainings == null)
+                {
+                    Session.LoggedUser.Trainings = new List<Training>();
+                }
                 Session.LoggedUser.Trainings.Add(t);
-                DatabaseMethods.AddPlanToDatabase();
+                DatabaseMethods.AddTreningToDatabase(t);
             }
 
             GetPlanForSpecficDay();

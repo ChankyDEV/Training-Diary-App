@@ -41,7 +41,7 @@ namespace BodyWeight.PageModels.PlansAndTrainings
             {
                Excercises.Add(item);           
             }
-            TodaysTraining.PlanName = TodaysPlan.PlanName;
+            TodaysTraining.Plan = TodaysPlan.PlanName;
         }
 
 

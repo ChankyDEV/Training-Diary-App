@@ -6,7 +6,7 @@ namespace BodyWeight.Models
 {
     public class Training
     {
-        public string PlanName { get; set; }
+        public string Plan { get; set; }
         public DateTime Date { get; set; }
         public List<Excercise> TodayExcercises { get; set; }
 

@@ -32,12 +32,13 @@ namespace BodyWeight.PageModels
             try
             {
                 var authProvider = new FirebaseAuthProvider(new FirebaseConfig(webApiKey));
+               
                 var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(Email,Password);
                 List<Plan> listOfPlans = new List<Plan>();
                 List<Training> listOfTrainings = new List<Training>();
-
-                DatabaseMethods.WriteUserToDataBase(auth.User.LocalId, Email, Password, Name, Surname, listOfPlans, listOfTrainings);
-               
+             
+                
+                DatabaseMethods.WriteUserToDataBase(auth.User.LocalId, Email, Password, Name, Surname, listOfPlans, listOfTrainings);              
                 string getToken = auth.FirebaseToken;
                 await CoreMethods.PushPageModel<LoginPageModel>();
 

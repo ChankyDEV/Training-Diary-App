@@ -20,9 +20,9 @@ namespace BodyWeight.PageModels
        
         public StartingPageModel()
         {
-            
+
             GetProfileInformationAndRefreshToken();
-            
+
 
             Plans = new ObservableCollection<Plan>();
             User = new Account();
@@ -41,6 +41,7 @@ namespace BodyWeight.PageModels
                 var RefreshedContent = await authProvider.RefreshAuthAsync(savedFirebaseAuth);
                 Preferences.Set("MyFirebaseRefreshToken", JsonConvert.SerializeObject(RefreshedContent));
 
+                DatabaseMethods.authID = savedFirebaseAuth.User.LocalId;
 
                 await UserFunAsync(savedFirebaseAuth.User.Email);
 
@@ -56,7 +57,9 @@ namespace BodyWeight.PageModels
         {
            
             Session.LoggedUser = await DatabaseMethods.GetUserbyEmail(email);
-
+            Session.LoggedUser.Plans = await DatabaseMethods.GetPlans();
+            
+ 
             if (Session.LoggedUser.Plans != null)
             {
                 GetPlanForSpecficDay();
@@ -64,7 +67,7 @@ namespace BodyWeight.PageModels
             else
             {
                 Session.LoggedUser.Plans = new List<Plan>();
-                Session.LoggedUser.Trainings = new List<Training>();
+               
             }
 
             UpdateDays();
