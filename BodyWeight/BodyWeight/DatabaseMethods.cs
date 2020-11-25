@@ -18,16 +18,7 @@ namespace BodyWeight
     {
         public static FirebaseClient mDatabase { get; set; }= new FirebaseClient("https://trainingnoteapp.firebaseio.com");
         public static string authID;
-        async static public void WriteUserToDataBase(string id,string email, string password, string name, string surname,List<Plan> plans,List<Training> trainings)
-        {
-            authID = id;
-            await mDatabase.Child("users").Child(id).Child("info").PostAsync(new Account() { 
-                Name=name,
-                Surname=surname,
-                Email=email,
-                Password=password
-            });
-        }
+       
 
         // Method for getting data
         async static public  Task<Account> GetUserbyEmail()
@@ -80,8 +71,33 @@ namespace BodyWeight
            }).ToList();
 
         }
+        async static public Task<List<Measurement>> GetMeasurements()
+        {
+            return (await mDatabase
+           .Child("users")
+           .Child(authID)
+           .Child("measurements")
+           .OnceAsync<Measurement>()).Select(i => new Measurement
+           {
+               MeasurementDate=i.Object.MeasurementDate,
+               Weight=i.Object.Weight,
+               Change=i.Object.Change
+           }).ToList();
+
+        }
 
         // Method for posting data
+        async static public void WriteUserToDataBase(string id, string email, string password, string name, string surname, List<Plan> plans, List<Training> trainings)
+        {
+            authID = id;
+            await mDatabase.Child("users").Child(id).Child("info").PostAsync(new Account()
+            {
+                Name = name,
+                Surname = surname,
+                Email = email,
+                Password = password
+            });
+        }
         async static public void AddPlanToDatabase(Plan plan)
         {
             await mDatabase.Child("users").Child(authID).Child("plans").PostAsync(plan);
@@ -90,7 +106,9 @@ namespace BodyWeight
         {
             await mDatabase.Child("users").Child(authID).Child("trainings").PostAsync(training);
         }
-
-
+        async static public void AddMeasurementToDatabase(Measurement measurement)
+        {
+            await mDatabase.Child("users").Child(authID).Child("measurements").PostAsync(measurement);
+        }
     }
 }

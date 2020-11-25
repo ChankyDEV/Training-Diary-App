@@ -15,7 +15,7 @@
             android:TabbedPage.IsSwipePagingEnabled="False"
               android:TabbedPage.IsSmoothScrollEnabled="False"
             BarBackgroundColor="#4B0082"
-            
+             CurrentPageChanged="TabbedPage_CurrentPageChanged"
              x:Class="BodyWeight.Pages.StartingPage">
   <!--Pages can be added as references or inline-->
     <pages:TreningPage Title="Trening" IconImageSource="barbell" ></pages:TreningPage>

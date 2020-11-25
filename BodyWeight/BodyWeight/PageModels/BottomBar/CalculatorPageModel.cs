@@ -55,7 +55,7 @@ namespace BodyWeight.PageModels
         }
         public Command InfoPopUpCommand => new Command(async () =>
         {
-            await PopupNavigation.Instance.PushAsync(new AddMeasurmentPopUp());
+            await PopupNavigation.Instance.PushAsync(new ActivityInfoPopUp());
         });
         public Command CalculateCaloriesCommand => new Command(() =>
         {
@@ -98,16 +98,7 @@ namespace BodyWeight.PageModels
             return result;
         }
 
-        protected override void ViewIsAppearing(object sender, EventArgs e)
-        {
-            base.ViewIsAppearing(sender, e);
-            MessagingCenter.Subscribe<ExpanderEvent>(this, "Expander size changed", ChangeExpanderIcon);
-        }
-        protected override void ViewIsDisappearing(object sender, EventArgs e)
-        {
-            base.ViewIsDisappearing(sender, e);
-            MessagingCenter.Unsubscribe<ExpanderEvent>(this, "Expander size changed");
-        }
+       
         private void ChangeExpanderIcon(ExpanderEvent obj)
         {
             if(ArrowExpanderSource == "down_arrow")

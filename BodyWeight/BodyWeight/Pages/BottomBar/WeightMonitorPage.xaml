@@ -10,8 +10,9 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="10*"/>
-                <RowDefinition Height="45*"/>
-                <RowDefinition Height="45*"/>
+                <RowDefinition Height="35*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="50*"/>
             </Grid.RowDefinitions>
 
           <Grid BackgroundColor="Indigo" Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Padding="{Binding HeaderPadding}" >
@@ -32,14 +33,39 @@
                 </Label>
             </Grid>
 
-            <oxy:PlotView Model="{Binding Model}" Grid.Row="1"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+            <oxy:PlotView Model="{Binding Model}" Grid.Row="1"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="10"/>
 
-            <Frame Grid.Row="2" Padding="0" 
-                   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
-                   BackgroundColor="LightYellow"
-                   HasShadow="True">
-                <Label Text="{Binding Text}" VerticalTextAlignment="Center"  HorizontalTextAlignment="Center"/>
-            </Frame>
+            <Grid Grid.Row="2" VerticalOptions="EndAndExpand" BackgroundColor="LightGray" Padding="10,0,10,0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Date" Grid.Column="0" Margin="30,0,0,0" />
+                <Label Text="Weight" Grid.Column="1" HorizontalTextAlignment="End" Margin="0,0,10,0" />
+                <Label Text="Change" Grid.Column="2" HorizontalTextAlignment="End" Margin="0,0,10,0" />
+            </Grid>
+
+            <controls:ClickableListView ItemsSource="{Binding Measurements}"  Grid.Row="3"  
+                   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                <controls:ClickableListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding MeasurementDate, StringFormat='{0:dd MMM yyyy}'}" Grid.Column="0" Margin="10,0,0,0" />
+                                    <Label Text="{Binding Weight}" Grid.Column="1" HorizontalTextAlignment="End" Margin="0,0,25,0" />
+                                    <Label Text="{Binding Change}" Grid.Column="2" HorizontalTextAlignment="End" Margin="0,0,25,0" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </controls:ClickableListView.ItemTemplate>
+                </controls:ClickableListView>
+ 
 
         </Grid>
     </ContentPage.Content>

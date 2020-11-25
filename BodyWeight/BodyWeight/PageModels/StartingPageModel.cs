@@ -33,10 +33,14 @@ namespace BodyWeight.PageModels
             Model = new PlotModel();
             XAXIS = new DateTimeAxis();
             YAXIS = new LinearAxis();
-            CreateAxes();
+
+            DrawPlot();
+
 
 
         }
+
+       
         async private void GetProfileInformationAndRefreshToken()
         {
             var authProvider = new FirebaseAuthProvider(new FirebaseConfig(webApiKey));
@@ -77,7 +81,20 @@ namespace BodyWeight.PageModels
             UpdateDays();
         }
 
+        protected override void ViewIsAppearing(object sender, EventArgs e)
+        {
+            base.ViewIsAppearing(sender, e);
+            MessagingCenter.Subscribe<ExpanderEvent>(this, "Expander size changed", ChangeExpanderIcon);
+            MessagingCenter.Subscribe<WeightEvent>(this, "Added weight", AddWeight);
+            MessagingCenter.Subscribe<PageEvent>(this, "User chose weight page", ConfigurePlot);
+        }
 
-       
+        protected override void ViewIsDisappearing(object sender, EventArgs e)
+        {
+            base.ViewIsDisappearing(sender, e);
+            MessagingCenter.Unsubscribe<ExpanderEvent>(this, "Expander size changed");
+            MessagingCenter.Unsubscribe<WeightEvent>(this, "Added weight");
+            MessagingCenter.Unsubscribe<PageEvent>(this, "User chose weight page");
+        }
     }
 }

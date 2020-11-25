@@ -1,4 +1,5 @@
-﻿using Rg.Plugins.Popup.Services;
+﻿using BodyWeight.Events;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -93,6 +94,8 @@ namespace BodyWeight.Pages.PopUps
         private void Button_Clicked(object sender, EventArgs e)
         {
              PopupNavigation.Instance.PopAsync();
+             WeightEvent weight = new WeightEvent(datePicker.Date,double.Parse(weightEntry.Text));
+             MessagingCenter.Send<WeightEvent>(weight,"Added weight");
         }
     }
 }
