@@ -6,32 +6,96 @@
              x:Class="BodyWeight.Pages.PlansAndTrainings.AddExcercisePage">
     <ContentPage.Content>
 
-        <StackLayout BackgroundColor="Indigo">
-            <StackLayout BackgroundColor="Indigo" VerticalOptions="FillAndExpand">
-                
+        <StackLayout BackgroundColor="WhiteSmoke" >
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="0,20,0,0">
+                <Image Source="leftArrow" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0" Scale="0.5" Opacity="0.6" >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoBackCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="Add excercise" HorizontalOptions="CenterAndExpand"
+                   TextColor="Black" FontSize="Medium"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="-60,0,0,0" FontAttributes="Bold" />
             </StackLayout>
-            <Frame CornerRadius="50" Margin="10" >
-                <StackLayout >
-                 <Label Text="Add your excercise" FontSize="Large" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Center" Margin="20"/>
-            <controls:MyEntry Placeholder="Excercise name" MyTintColor="Indigo" HorizontalOptions="Center" HorizontalTextAlignment="Center"
-                                   WidthRequest="160" Text="{Binding ExcerciseName}" />
-
-
-            <controls:MyEntry Placeholder="Number of series" MyTintColor="Indigo" HorizontalOptions="Center" HorizontalTextAlignment="Center"
-                                   WidthRequest="160" Text="{Binding NumberOfSeries}" />
-
-
-            <controls:MyEntry Placeholder="Repetitions" MyTintColor="Indigo" HorizontalOptions="Center" HorizontalTextAlignment="Center"
-                                   WidthRequest="160" Text="{Binding Repetitions}" />
+           
             
-            <Button Text="Add"  Command="{Binding AddExcerciseCommand}" TextColor="Indigo" FontAttributes="Bold"  FontSize="16" Margin="20"
-                        CornerRadius="40" BackgroundColor="#FFC21C" BorderColor="#FFC21C"  BorderWidth="2"/>
+            <StackLayout HorizontalOptions="FillAndExpand"  Margin="80,10,80,0" Grid.Row="1"  >
+                <Frame HasShadow="True" CornerRadius="5"  Padding="0" BackgroundColor="LightGray"  >
+                    <StackLayout Orientation="Horizontal"   Padding="-15" >
+                        <Image
+                                Source="sign"
+                                VerticalOptions="Start"
+                                HorizontalOptions="Start"
+                                Margin="5,0,0,0"
+                                Scale="0.3"
+                                />
+                        <controls:MyEntry 
+                            Margin="-15,0,0,0"
+                            Placeholder="Excercise name"
+                            HorizontalOptions="StartAndExpand" 
+                            VerticalOptions="Center"                                 
+                            FontSize="Small"                                     
+                            Text="{Binding ExcerciseName}"
+                            HorizontalTextAlignment="Start"
+                            VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                </Frame>
             </StackLayout>
-            </Frame>
-            
-            <StackLayout BackgroundColor="Indigo" VerticalOptions="FillAndExpand">
+            <StackLayout HorizontalOptions="FillAndExpand"  Margin="80,10,80,0" Grid.Row="1"  >
+                <Frame HasShadow="True" CornerRadius="5"  Padding="0" BackgroundColor="LightGray"  >
+                    <StackLayout Orientation="Horizontal"   Padding="-15" >
+                        <Image
+                                Source="numbering"
+                                VerticalOptions="Start"
+                                HorizontalOptions="Start"
+                                Margin="5,0,0,0"
+                                Scale="0.3"
+                                />
+                        <controls:MyEntry 
+                            Margin="-15,0,0,0"
+                            Placeholder="Number of series"
+                            Keyboard="Numeric"
+                            HorizontalOptions="StartAndExpand" 
+                            VerticalOptions="Center"                                 
+                            FontSize="Small"                                     
+                            Text="{Binding NumberOfSeries}"
+                            HorizontalTextAlignment="Start"
+                            VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+            <StackLayout HorizontalOptions="FillAndExpand"  Margin="80,10,80,0" Grid.Row="1"  >
+                <Frame HasShadow="True" CornerRadius="5"  Padding="0" BackgroundColor="LightGray"  >
+                    <StackLayout Orientation="Horizontal"   Padding="-15" >
+                        <Image
+                                Source="circle"
+                                VerticalOptions="Start"
+                                HorizontalOptions="Start"
+                                Margin="5,0,0,0"
+                                Scale="0.3"
+                                />
+                        <controls:MyEntry 
+                            Margin="-15,0,0,0"
+                            Placeholder="Repetitions"
+                            Keyboard="Numeric"
+                            HorizontalOptions="StartAndExpand" 
+                            VerticalOptions="Center"                                 
+                            FontSize="Small"                                     
+                            Text="{Binding Repetitions}"
+                            HorizontalTextAlignment="Start"
+                            VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
 
-            </StackLayout>
+
+            <Label Text="Add excercise" FontSize="Medium" TextColor="#ea7571" HorizontalOptions="Center" VerticalOptions="StartAndExpand" Margin="0,30,0,0"  >
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding AddExcerciseCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+
+
 
         </StackLayout>  
     </ContentPage.Content>

@@ -2,91 +2,153 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              NavigationPage.HasNavigationBar="False"
-             BackgroundColor="Indigo"
+             BackgroundColor="WhiteSmoke"
                  xmlns:controls="clr-namespace:BodyWeight.Helpers"
              x:Class="BodyWeight.Pages.PlansAndTrainings.SetWeightAndRepsPage">
     <ContentPage.Content>
-        <StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-            <StackLayout BackgroundColor="Indigo">
-                
-            </StackLayout>
 
-            <Frame Margin="10" CornerRadius="50">
-                <StackLayout>
-                    <Label Text="{Binding ExName}" TextColor="Black" FontSize="Large" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
-                    <StackLayout Orientation="Horizontal"  HorizontalOptions="Center" Margin="10" >
 
-                        <Frame CornerRadius="30" HeightRequest="10" WidthRequest="10" BackgroundColor="Indigo">
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding SubtractWeightCommand}"  />
-                            </Frame.GestureRecognizers>
-                            <Image Source="https://www.iconsdb.com/icons/preview/color/FFC21C/minus-xxl.png" Aspect="AspectFill"/>
-                        </Frame>
-                        <controls:MyEntry Text="{Binding Weight}" Placeholder="Weight" VerticalOptions="Start" HorizontalTextAlignment="Center" WidthRequest="100" MyTintColor="Indigo"/>
-                        <Frame CornerRadius="30" HeightRequest="15" WidthRequest="10" BackgroundColor="Indigo">
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer  Command="{Binding AddWeightCommand}"/>
-                            </Frame.GestureRecognizers>
-                            <Image Source="https://www.iconsdb.com/icons/preview/color/FFC21C/plus-xxl.png" Aspect="AspectFill"/>
-                        </Frame>
 
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal"  HorizontalOptions="Center" Margin="10" >
-                        <Frame CornerRadius="30" HeightRequest="10" WidthRequest="10" BackgroundColor="Indigo">
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding SubtractRepsCommand}"  />
-                            </Frame.GestureRecognizers>
-                            <Image Source="https://www.iconsdb.com/icons/preview/color/FFC21C/minus-xxl.png" Aspect="AspectFill"/>
-                        </Frame>
-                        <controls:MyEntry Text="{Binding Reps}" Placeholder="Reps" VerticalOptions="Start" HorizontalTextAlignment="Center" WidthRequest="100" MyTintColor="Indigo"/>
-                        <Frame CornerRadius="30" HeightRequest="15" WidthRequest="10" BackgroundColor="Indigo">
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer  Command="{Binding AddRepsCommand}"/>
-                            </Frame.GestureRecognizers>
-                            <Image Source="https://www.iconsdb.com/icons/preview/color/FFC21C/plus-xxl.png" Aspect="AspectFill"/>
-                        </Frame>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                        <Button Text="Add" Command="{Binding AddSerie}"
-                                    BackgroundColor="#4B0082" TextColor="#FFC21C" FontAttributes="Bold" FontSize="16" WidthRequest="130" CornerRadius="20" HeightRequest="35"  />
-                        <Button Text="Remove excercise" Command="{Binding RemoveSerie}"
-                                    BackgroundColor="#4B0082" TextColor="#FFC21C" FontAttributes="Bold" FontSize="16" WidthRequest="130" CornerRadius="20" HeightRequest="40"  />
-                    </StackLayout>
+            <Image Source="leftArrow" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center" Scale="0.5" Margin="10,0,0,0" Opacity="0.6" >
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding GoBackCommand}"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Label Text="{Binding ExName}" Grid.Row="0"  HorizontalOptions="Center"
+                   TextColor="Black" FontSize="Medium"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold"/>
+
+            <Grid  Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="minus" Scale="0.4"  Grid.Column="0" HorizontalOptions="EndAndExpand">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SubtractWeightCommand}" />
+                        </Image.GestureRecognizers>
+                    </Image>
+
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"   Grid.Column="1" >
+                    <Frame HasShadow="True" CornerRadius="5"  Padding="0" BackgroundColor="LightGray"  >
+
+                        <controls:MyEntry 
+                            HorizontalOptions="FillAndExpand" 
+                            VerticalOptions="Center"                                 
+                            FontSize="Small"        
+                            Keyboard="Numeric"
+                            Text="{Binding Weight}"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"/>
+  
+                    </Frame>
                 </StackLayout>
-            </Frame>
-            
-            
-            <StackLayout>
+                <Label Grid.Column="1" 
+                       HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" 
+                       FontAttributes="Bold" Opacity="0.2" Margin="5,-20,0,0" 
+                       Text="weight" TextColor="Black" FontSize="Small"/>
 
-                <Frame Margin="10" CornerRadius="50">
-                    <StackLayout>
-                         <Label Text="Series" TextColor="Black" FontSize="Medium"/>
+                <Image Source="plus" Scale="0.4" Grid.Column="2" HorizontalOptions="StartAndExpand" >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AddWeightCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+                </Grid>
+
+                <Grid  Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Source="minus" Scale="0.4"  Grid.Column="0" HorizontalOptions="EndAndExpand">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SubtractRepsCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+                
+               
+                
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"   Grid.Column="1" >
+                    <Frame HasShadow="True" CornerRadius="5"  Padding="0" BackgroundColor="LightGray"  >
+                        <controls:MyEntry 
+                            HorizontalOptions="FillAndExpand" 
+                            VerticalOptions="Center"                                 
+                            FontSize="Small"      
+                            Keyboard="Numeric"
+                            Text="{Binding Reps}"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"/>
+
+                    </Frame>
+                </StackLayout>
+                <Label Grid.Column="1" 
+                       HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" 
+                       FontAttributes="Bold" Opacity="0.2" Margin="5,-20,0,0" 
+                       Text="reps" TextColor="Black" FontSize="Small"/>
+                
+                <Image Source="plus" Scale="0.4" Grid.Column="2" HorizontalOptions="StartAndExpand" >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AddRepsCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+
+                <Grid Grid.Row="3" Margin="40,10,40,0" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Add serie" FontSize="Medium" TextColor="#ea7571" HorizontalTextAlignment="Center"   >
+                        <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AddSerie}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label Text="Remove serie" Grid.Column="1" FontSize="Medium" TextColor="#ea7571" HorizontalTextAlignment="Center"    >
+                        <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding RemoveSerie}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                </Grid>
+
+            <StackLayout Grid.Row="4" Margin="40,0,40,0" >
+                <Label Text="Series" TextColor="Black" FontSize="Medium"  HorizontalTextAlignment="Start" />
                 <ListView ItemsSource="{Binding Series}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout Orientation="Horizontal">
-                                            <Label Text="{Binding Weight}"/>
-                                            <Label Text="x"/>
-                                            <Label Text="{Binding Reps}"/>
+                                <StackLayout Orientation="Horizontal" Margin="20,0,0,0" VerticalOptions="Center">
+                                    <Label Text="{Binding Weight}"/>
+                                    <Label Text="x"/>
+                                    <Label Text="{Binding Reps}"/>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <Button Text="Save Excercise" Command="{Binding SaveExcerciseCommand}" TextColor="Indigo" FontAttributes="Bold"  FontSize="16" Margin="20"
-                        CornerRadius="40" BackgroundColor="#FFC21C" BorderColor="#FFC21C"  BorderWidth="2"/>
-                    </StackLayout>
-                </Frame>
-
-                   
-            </StackLayout>
+                </StackLayout>
             
+                <Label Text="Save Excercise" FontSize="Medium" TextColor="#ea7571" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"  Grid.Row="5"  >
+                    <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SaveExcerciseCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
 
-            <StackLayout BackgroundColor="Indigo">
-
-            </StackLayout>
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

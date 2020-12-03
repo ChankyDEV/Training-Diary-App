@@ -7,101 +7,111 @@
              xmlns:controls="clr-namespace:BodyWeight.Helpers"
              x:Class="BodyWeight.Pages.CalculatorPage">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical">
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+
             <!--Header-->
-            <StackLayout VerticalOptions="Start">
+            <StackLayout VerticalOptions="Start" Grid.Row="0" >
                 <ContentView>
-                    <Grid BackgroundColor="Indigo" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Padding="{Binding HeaderPadding}" >
+                    <Grid BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Padding="{Binding HeaderPadding}" >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
                         <StackLayout Grid.Column="0">
-                            <Label Text="Hello" TextColor="#FFC21C" FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold"/>
-                            <Label Text="bro" TextColor="WhiteSmoke" FontSize="Small" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold"/>
+                            <Label Text="Calculate your calories" TextColor="Black" FontSize="Medium" Margin="0,12,0,12"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold"/>
                         </StackLayout>
-                        <ImageButton
-                            BackgroundColor="Indigo"
-                            Grid.Column="1"
-                            Source="moreGold"                         
-                            />
+ 
                     </Grid>
                 </ContentView>
             </StackLayout>
 
-        
-              
-                    <!--TITLE-->
-                    <Label Text="Calculate your calories" VerticalOptions="Start" HorizontalOptions="Center" Margin="0,10,0,10" FontSize="Large"/>
-            
                     <!--Weight-->
-                    <StackLayout HorizontalOptions="FillAndExpand" Margin="80,0,80,0">
-                        <Label Text="Weight" FontSize="Micro" FontAttributes="Bold"  />
-                          <Frame HasShadow="True"  Padding="0"  >
-                              <StackLayout Orientation="Horizontal"  >
-                                  <Image 
-                                     BackgroundColor="Transparent" 
-                                      WidthRequest="14"
-                                     Source="weightscale"  
-                                      Margin="5,0,0,0"
-                                    />
-                                  <controls:MyEntry Placeholder="Write your weight"                                              
-                                                Keyboard="Numeric"                                    
-                                                FontSize="Small"
-                                                Text="{Binding Weight}"
-                                                HorizontalTextAlignment="Center"
-                                                VerticalTextAlignment="Center"/>
-                              </StackLayout>
-                          </Frame>
+            <StackLayout HorizontalOptions="FillAndExpand"  Margin="80,10,80,0" Grid.Row="1"  >
+                <Frame HasShadow="True" CornerRadius="5"  Padding="0" BackgroundColor="LightGray"  >
+                    <StackLayout Orientation="Horizontal"   Padding="-15" >
+                        <Image
+                                Source="bar"
+                                VerticalOptions="Start"
+                                HorizontalOptions="Start"
+                                Margin="5,0,0,0"
+                                Scale="0.3"
+                                />
+                        <controls:MyEntry 
+                            Margin="-15,0,0,0"
+                            Placeholder="Weight"
+                            HorizontalOptions="FillAndExpand" 
+                            VerticalOptions="Center"
+                            Keyboard="Numeric"                                    
+                            FontSize="Small"                                     
+                            Text="{Binding Weight}"
+                            HorizontalTextAlignment="Start"
+                            VerticalTextAlignment="Center"/>
                     </StackLayout>
-                        
-                    
+                </Frame>
+            </StackLayout>
+                                          
                     <!--Height-->
-                     <StackLayout HorizontalOptions="FillAndExpand" Margin="80,0,80,0">
-                         <Label Text="Height" FontSize="Micro" FontAttributes="Bold"  />
-                         <Frame HasShadow="True"  Padding="0"  >
-                             <StackLayout Orientation="Horizontal"  >
-                                 <Image 
-                                              BackgroundColor="Transparent" 
-                                              Source="height"  
-                                                WidthRequest="16"
-                                               Margin="5,0,0,0"
-                                             />
-                                 <controls:MyEntry Placeholder="Write your height"                                              
-                                                   Keyboard="Numeric"                                    
-                                                   FontSize="Small"
-                                                   Text="{Binding Height}"
-                                                   HorizontalTextAlignment="Center"
-                                                   VerticalTextAlignment="Center"/>
-                             </StackLayout>
-                         </Frame>
-                     </StackLayout>
+            <StackLayout HorizontalOptions="FillAndExpand"  Margin="80,10,80,0" Grid.Row="2" >
+                <Frame HasShadow="True" CornerRadius="5"  Padding="0" BackgroundColor="LightGray"  >
+                    <StackLayout Orientation="Horizontal"   Padding="-15" >
+                        <Image
+                                Source="ruler"
+                                VerticalOptions="Start"
+                                HorizontalOptions="Start"
+                                Margin="5,0,0,0"
+                                Scale="0.3"
+                                />
+                        <controls:MyEntry 
+                            Margin="-15,0,0,0"
+                            Placeholder="Height"
+                            HorizontalOptions="FillAndExpand" 
+                            VerticalOptions="Center"
+                            Keyboard="Numeric"                                    
+                            FontSize="Small"                                     
+                            Text="{Binding Height}"
+                            HorizontalTextAlignment="Start"
+                            VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
 
-
-                              <!--Age-->
-                     <StackLayout HorizontalOptions="FillAndExpand" Margin="80,0,80,0">
-                         <Label Text="Age" FontSize="Micro" FontAttributes="Bold"  />
-                         <Frame HasShadow="True"  Padding="0"  >
-                             <StackLayout Orientation="Horizontal"  >
-                                 <Image 
-                                        BackgroundColor="Transparent" 
-                                        WidthRequest="16"
-                                        Source="hourglass"  
-                                        Margin="5,0,0,0" />
-                                 <controls:MyEntry Placeholder="Write your age"                                              
-                                                   Keyboard="Numeric"                                    
-                                                   FontSize="Small"
-                                                   Text="{Binding Age}"
-                                                   HorizontalTextAlignment="Center"
-                                                   VerticalTextAlignment="Center"/>
-                             </StackLayout>
-                         </Frame>
-                     </StackLayout>
+            <!--Age-->
+            <StackLayout HorizontalOptions="FillAndExpand"  Margin="80,10,80,0" Grid.Row="3" >
+                <Frame HasShadow="True" CornerRadius="5"  Padding="0" BackgroundColor="LightGray"  >
+                    <StackLayout Orientation="Horizontal"   Padding="-15" >
+                        <Image
+                                Source="clock"
+                                VerticalOptions="Start"
+                                HorizontalOptions="Start"
+                                Margin="5,0,0,0"
+                                Scale="0.3"
+                                />
+                        <controls:MyEntry 
+                            Margin="-15,0,0,0"
+                            Placeholder="Age"
+                            HorizontalOptions="FillAndExpand" 
+                            VerticalOptions="Center"
+                            Keyboard="Numeric"                                    
+                            FontSize="Small"                                     
+                            Text="{Binding Age}"
+                            HorizontalTextAlignment="Start"
+                            VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
 
             <!--Segmented control-->
-                    <StackLayout HorizontalOptions="FillAndExpand" Margin="80,0,80,0" >
-                        <Label Text="Sex" FontSize="Micro" FontAttributes="Bold" />
-                        <Grid HorizontalOptions="Start"   >
+            <StackLayout HorizontalOptions="CenterAndExpand" Margin="80,10,80,0" Grid.Row="4" >
+                <Grid HorizontalOptions="Start"   >
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="30"/>
                             </Grid.RowDefinitions>
@@ -112,7 +122,7 @@
                             <Frame x:Name="SegmentedFrameBackground" Grid.Row="0" Grid.Column="0" 
                                    BackgroundColor="WhiteSmoke" HasShadow="True" HorizontalOptions="FillAndExpand" 
                                    CornerRadius="30" Padding="0" >
-                                <Frame BackgroundColor="Indigo" CornerRadius="30" HorizontalOptions="Start" 
+                                <Frame BackgroundColor="#ea7571" CornerRadius="30" HorizontalOptions="Start" 
                                        WidthRequest="20" x:Name="SegmentedFrame"                           
                                        TranslationX="{Binding SegmentedControlTranslation}" >
                                 </Frame>
@@ -123,11 +133,11 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Column="0" 
-                                        TextColor="#FFC21C"
+                                        TextColor="Black"
                                        Margin="5,0,0,0"
                                         x:Name="MaleText"
-                                        FontSize="Caption"
-                                        FontAttributes="Bold"
+                                        FontSize="Caption"     
+                                       FontAttributes="Bold"
                                         Text="Male" HorizontalOptions="Center" VerticalOptions="Center" 
                                         Padding="5" >
                                     <Label.GestureRecognizers>
@@ -144,67 +154,56 @@
                        
                     </StackLayout>
                                      
-                    <!--Activity-->
-                <StackLayout HorizontalOptions="FillAndExpand" Margin="80,0,80,0" >
-                <Label Text="Activity" FontSize="Micro" FontAttributes="Bold" />
-                <Frame HasShadow="True" Padding="0">
-                    <Expander x:Name="ActivityExpander"  ExpandAnimationLength="500" CollapseAnimationLength="500" VerticalOptions="Start" Padding="5" >
-                        <Expander.Header>
-                            <StackLayout>
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding ActivityTitle}"  FontSize="Small" FontAttributes="Bold" />
-                                    <Image Source="{Binding ArrowExpanderSource}" WidthRequest="8" Margin="5,0,10,0" />
-                                    <Image Source="info" Margin="5,0,10,0" HorizontalOptions="EndAndExpand">
-                                        <Image.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding InfoPopUpCommand}"/>
-                                        </Image.GestureRecognizers>
-                                    </Image>
-                                </StackLayout>
-                                <BoxView BackgroundColor="LightGray" VerticalOptions="Center" HeightRequest="1" Margin="0,0,0,5"/>
-                            </StackLayout>
-                        </Expander.Header>
-                        <controls:ClickableListView ItemsSource="{Binding Activites}" ItemClickCommand="{Binding ExpanderItemClickedCommand}" HeightRequest="180" VerticalOptions="Start"
+            <!--Activity-->
+
+            <Expander x:Name="ActivityExpander" ExpandAnimationLength="500" Grid.Row="5" Tapped="ActivityExpander_Tapped_1"  CollapseAnimationLength="500" VerticalOptions="Start"  HorizontalOptions="FillAndExpand"  Margin="80,0,80,0" >
+                <Expander.Header>
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding ActivityTitle}"  FontSize="Small" FontAttributes="Bold" />
+                            <Image Source="{Binding ArrowExpanderSource}" WidthRequest="8" Margin="5,0,10,0" />
+                            <Image Source="infonew" Margin="5,0,10,0" HeightRequest="18" HorizontalOptions="EndAndExpand">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding InfoPopUpCommand}"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </StackLayout>
+                        <BoxView BackgroundColor="LightGray" VerticalOptions="Center" HeightRequest="1" Margin="0,0,0,5"/>
+                    </StackLayout>
+                </Expander.Header>
+                <controls:ClickableListView ItemsSource="{Binding Activites}" ItemClickCommand="{Binding ExpanderItemClickedCommand}" VerticalOptions="Start" HeightRequest="170"
                                                     HasUnevenRows="True" VerticalScrollBarVisibility="Never"  SeparatorVisibility="None"  >
-                            <controls:ClickableListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ViewCell>
-                                        <StackLayout Orientation="Horizontal">
-                                            <Label Text="{Binding}"  HorizontalOptions="Start" VerticalOptions="Start" Margin="0,5,0,5"/>
-                                        </StackLayout>
+                    <controls:ClickableListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding}"  HorizontalOptions="Start" VerticalOptions="Start" Margin="0,5,0,5"/>
+                                </StackLayout>
 
-                                    </ViewCell>
-                                </DataTemplate>
-                            </controls:ClickableListView.ItemTemplate>
-                        </controls:ClickableListView>
-                    </Expander>
-                </Frame>
-            </StackLayout >
+                            </ViewCell>
+                        </DataTemplate>
+                    </controls:ClickableListView.ItemTemplate>
+                </controls:ClickableListView>
+            </Expander>
 
-            <StackLayout x:Name="resultStack" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand" Orientation="Horizontal" >
-                
-                <Label 
-                    x:Name="resultTextFirst"
-                    Text="You have to eat" FontAttributes="Bold" FontSize="Large"/>
-                <Label x:Name="resultNumber"
-                   Text="{Binding Result}" FontAttributes="Bold" FontSize="Large"/>
-                <Label 
-                    x:Name="resultTextSecond"
-                   Text="calories per day" FontAttributes="Bold" FontSize="Large"/>
-                
+
+            <StackLayout Grid.Row="6" VerticalOptions="FillAndExpand"  >
+                <StackLayout x:Name="resultStack" HorizontalOptions="Center"  Padding="0" Orientation="Horizontal">
+                  
+                    <Label  x:Name="resultNumber" FontAttributes="Bold" FontSize="Medium" TextColor="#ea7571" Text="{Binding Result}"/>
+                    <Label  x:Name="resultSubText"  Text="{Binding ResultSubText}" FontAttributes="Bold" FontSize="Medium" />
+                </StackLayout>
+                <Label Text="Calculate" x:Name="calculateText" FontSize="Medium" TextColor="#ea7571" HorizontalOptions="Center" VerticalOptions="EndAndExpand" Margin="0,0,0,30"  >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CalculateCaloriesCommand}" Tapped="Button_Clicked" />
+                    </Label.GestureRecognizers>
+                </Label>
             </StackLayout>
-           
-
-            <Frame HorizontalOptions="Center" VerticalOptions="EndAndExpand" 
-                   Padding="0" HasShadow="True" Margin="0,0,0,20" CornerRadius="5" >
-                <Button Text="go"
-                        Clicked="Button_Clicked"
-                        TextColor="#FFC21C"
-                        BackgroundColor="Indigo"
-                        Command="{Binding CalculateCaloriesCommand}"
-                      />
-            </Frame>
             
 
-        </StackLayout>
+        
+            
+
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

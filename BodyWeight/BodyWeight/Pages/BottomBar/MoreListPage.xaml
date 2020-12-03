@@ -9,25 +9,19 @@
         <StackLayout>
             <StackLayout VerticalOptions="Start">
                 <ContentView>
-                    <Grid BackgroundColor="Indigo" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Padding="{Binding HeaderPadding}" >
+                    <Grid BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Padding="{Binding HeaderPadding}" >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
                         <StackLayout Grid.Column="0">
-                            <Label Text="Hello" TextColor="#FFC21C" FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold"/>
-                            <Label Text="bro" TextColor="WhiteSmoke" FontSize="Small" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold"/>
+                            <Label Text="User informations" TextColor="Black" FontSize="Medium" Margin="0,12,0,12"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold"/>
                         </StackLayout>
-                        <ImageButton
-                            BackgroundColor="Indigo"
-                            Grid.Column="1"
-                            Source="moreGold"
-                            />
+   
                     </Grid>
                 </ContentView>
-
-                <Button Text="Log out" Command="{Binding LogOutCommand}"/>
             </StackLayout>
+            <Button Text="Log out" Command="{Binding LogOutCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

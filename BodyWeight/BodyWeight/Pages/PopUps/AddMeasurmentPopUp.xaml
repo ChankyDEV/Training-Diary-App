@@ -23,7 +23,7 @@
     <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
         <Frame BackgroundColor="White" Padding="0" HasShadow="true" CornerRadius="10" WidthRequest="300" HeightRequest="300">
             <StackLayout Padding="10" HorizontalOptions="CenterAndExpand">
-                <Label Text="New measurment" TextColor="Indigo" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="Center" Margin="0,0,0,20"/>
+                <Label Text="New measurment" TextColor="#ea7571" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="Center" Margin="0,0,0,20"/>
 
                  <Label Text="Date" FontSize="Micro" />
                 <Frame  HasShadow="True"  Padding="0" >
@@ -38,8 +38,8 @@
                    Padding="0" HasShadow="True" Margin="0,0,0,10" CornerRadius="5" >
                     <Button Text="Add"
                         Clicked="Button_Clicked" 
-                        TextColor="#FFC21C"
-                        BackgroundColor="Indigo"                      
+                        TextColor="White"
+                        BackgroundColor="#ea7571"                      
                       />
                 </Frame>
 

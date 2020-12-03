@@ -21,27 +21,39 @@ namespace BodyWeight.PageModels.PlansAndTrainings
 
         public Command AddExcerciseCommand => new Command(async () =>
         {
-            if(ReturnedEx==null)
+            if(String.IsNullOrWhiteSpace(ExcerciseName) || String.IsNullOrWhiteSpace(NumberOfSeries) || String.IsNullOrWhiteSpace(Repetitions))
             {
-                 ex = new Excercise();
-                 ex.ExcerciseName = ExcerciseName;
-                 ex.NumberOfSeries = int.Parse(NumberOfSeries);
-                 ex.Repetitions = int.Parse(Repetitions);           
-                 await CoreMethods.PopPageModel(ex);
+
             }
             else
             {
-                ReturnedEx.ChangedExcercise.ExcerciseName = ExcerciseName;
-                ReturnedEx.ChangedExcercise.NumberOfSeries = int.Parse(NumberOfSeries);
-                ReturnedEx.ChangedExcercise.Repetitions = int.Parse(Repetitions);
-                ReturnedEx.isChanged = true;
-                await CoreMethods.PopPageModel(ReturnedEx);
+                if (ReturnedEx == null)
+                {
+                    ex = new Excercise();
+                    ex.ExcerciseName = ExcerciseName;
+                    ex.NumberOfSeries = int.Parse(NumberOfSeries);
+                    ex.Repetitions = int.Parse(Repetitions);
+                    await CoreMethods.PopPageModel(ex);
+                }
+                else
+                {
+                    ReturnedEx.ChangedExcercise.ExcerciseName = ExcerciseName;
+                    ReturnedEx.ChangedExcercise.NumberOfSeries = int.Parse(NumberOfSeries);
+                    ReturnedEx.ChangedExcercise.Repetitions = int.Parse(Repetitions);
+                    ReturnedEx.isChanged = true;
+                    await CoreMethods.PopPageModel(ReturnedEx);
+                }
             }
+           
             
      
         });
 
+        public Command GoBackCommand => new Command(async () =>
+        {
+            await CoreMethods.PopPageModel();
 
+        });
         public override void Init(object returnedData)
         {
             if(returnedData==null)

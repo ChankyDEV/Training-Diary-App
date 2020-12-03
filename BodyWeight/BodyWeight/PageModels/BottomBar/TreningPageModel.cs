@@ -24,7 +24,10 @@ namespace BodyWeight.PageModels
 
              public bool TextVisible { get; set; } = true;
              public int Day { get; set; } = DateTime.Now.Day;
-             public DayOfWeek DayName { get; set; } = DateTime.Now.DayOfWeek;
+             public int Month { get; set; } = DateTime.Now.Month;
+             public int Year { get; set; } = DateTime.Now.Year;
+            public int DateIterator { get; set; } = 0;
+            public DayOfWeek DayName { get; set; } = DateTime.Now.DayOfWeek;
              public string ActualDateText { get; set; } = DateTime.Now.ToShortDateString();
              public string ActualDayText { get; set; } = "Today";
              public string PreviousDayText { get; set; } = "";
@@ -42,45 +45,16 @@ namespace BodyWeight.PageModels
 
         public Command NextDayCommand => new Command(() =>
         {
-            Day += 1;
-            DateTime dateTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, Day);
-            if(dateTime.DayOfWeek == DateTime.Now.DayOfWeek && Day == DateTime.Now.Day)
-            {
-                ActualDateText = dateTime.ToShortDateString();
-                ActualDayText = "Today";
-            }
-            else
-            {
-                 ActualDateText = dateTime.ToShortDateString();
-                 ActualDayText = dateTime.DayOfWeek.ToString();
-            }
-            
-            if (Session.LoggedUser.Plans != null)
-            {
-                GetPlanForSpecficDay();
-            }
-            UpdateDays();
+            //Day += 1;
+            DateIterator++;
+            UpdateDate();
 
         });
         public Command PreviousDayCommand => new Command(() =>
         {
-            Day -= 1;
-            DateTime dateTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, Day);
-            if (dateTime.DayOfWeek == DateTime.Now.DayOfWeek && Day==DateTime.Now.Day)
-            {
-                ActualDateText = dateTime.ToShortDateString();
-                ActualDayText = "Today";
-            }
-            else
-            {
-                ActualDateText = dateTime.ToShortDateString();
-                ActualDayText = dateTime.DayOfWeek.ToString();
-            }
-            if (Session.LoggedUser.Plans != null)
-            {
-                GetPlanForSpecficDay();
-            }
-            UpdateDays();
+            //Day -= 1;
+            DateIterator--;
+            UpdateDate();
 
         });
         public Command AddPlanCommand => new Command(async() =>
@@ -90,18 +64,30 @@ namespace BodyWeight.PageModels
         });
         #endregion
 
-        private void UpdateDays()
+    
+
+        private void UpdateDate()
         {
-            int localPreviousDay = Day-1;
-            int localNextDay = Day+1;
 
-            DateTime PreviousdateTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, localPreviousDay);
-            DateTime NextdateTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, localNextDay);
+            DateTime dateTime = DateTime.Now.AddDays(DateIterator);
 
-            PreviousDayText = PreviousdateTime.DayOfWeek.ToString();
-            NextDayText = NextdateTime.DayOfWeek.ToString();
+            if (dateTime.ToShortDateString()==DateTime.Now.ToShortDateString())
+            {
+                ActualDateText = dateTime.ToShortDateString();
+                ActualDayText = "Today";
+            }
+            else
+            {
+                ActualDateText = dateTime.ToShortDateString();
+                ActualDayText = dateTime.DayOfWeek.ToString();
+            }
+
+            if (Session.LoggedUser.Plans != null)
+            {
+                GetPlanForSpecficDay();
+            }
+
         }
-
 
         #region Methods for data comunication
         public override void ReverseInit(object returnedData)

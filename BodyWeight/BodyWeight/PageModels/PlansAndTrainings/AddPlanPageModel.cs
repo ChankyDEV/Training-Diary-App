@@ -83,18 +83,24 @@ namespace BodyWeight.PageModels.PlansAndTrainings
             {
                 DayOfRepeat += " Sunday ";
             }
-            int a = 0; 
-           
-            if(int.TryParse(PlanName,out a)==true || PlanName==null || PlanName.Contains(" "))
+            int a = 0;
+
+        if (int.TryParse(PlanName, out a) == true || PlanName == null || PlanName == "" || Excercises.Count == 0)
             {
-                if (Monday == false && Tuesday == false && Wednesday==false && Thursday==false && Friday==false && Saturday==false && Sunday==false)
+                string error = "";
+                if (Monday == false && Tuesday == false && Wednesday==false && Thursday==false && Friday==false && Saturday==false && Sunday==false && PlanName!="")
                 {
-                    await Application.Current.MainPage.DisplayAlert("Alert", "Fill plan name or choose day", "ok");
+                    error = "Choose day\n";
                 }    
-                else
+                if(Excercises.Count == 0)
                 {
-                    await Application.Current.MainPage.DisplayAlert("Alert", "Plan name should be text", "ok");
+                    error += "Add some excercises\n";
                 }
+                if(String.IsNullOrWhiteSpace(PlanName))
+                {
+                    error += "Fill plan name";                    
+                }
+                await Application.Current.MainPage.DisplayAlert("Warning", error, "Agree");
             }
             else
             {
@@ -247,5 +253,11 @@ namespace BodyWeight.PageModels.PlansAndTrainings
             
          
         }
+
+        public Command GoBackCommand => new Command(async() =>
+        {
+            await CoreMethods.PopPageModel();
+
+        });
     }
 }

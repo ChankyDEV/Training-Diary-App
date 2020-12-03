@@ -7,20 +7,21 @@
             xmlns:pagesBottom="clr-namespace:BodyWeight.Pages.BottomBar"   
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             android:TabbedPage.ToolbarPlacement="Bottom"    
-            android:TabbedPage.BarSelectedItemColor="#FFC21C"
-            android:TabbedPage.BarItemColor="white"
+            android:TabbedPage.BarSelectedItemColor="#ea7571"
+            android:TabbedPage.BarItemColor="Black"
             mc:Ignorable="d"
+            BackgroundColor="WhiteSmoke"
             NavigationPage.HasNavigationBar="False"
             NavigationPage.HasBackButton="true"
             android:TabbedPage.IsSwipePagingEnabled="False"
               android:TabbedPage.IsSmoothScrollEnabled="False"
-            BarBackgroundColor="#4B0082"
+            BarBackgroundColor="Transparent"
              CurrentPageChanged="TabbedPage_CurrentPageChanged"
              x:Class="BodyWeight.Pages.StartingPage">
   <!--Pages can be added as references or inline-->
-    <pages:TreningPage Title="Trening" IconImageSource="barbell" ></pages:TreningPage>
-    <pagesBottom:WeightMonitorPage Title="Weight" IconImageSource="weightscale"/>
-    <pages:CalculatorPage Title="Calculator" IconImageSource="keys" ></pages:CalculatorPage>
+    <pages:TreningPage Title="Trening" IconImageSource="stretching" ></pages:TreningPage>
+    <pagesBottom:WeightMonitorPage Title="Weight" IconImageSource="scales"/>
+    <pages:CalculatorPage Title="Calories" IconImageSource="calories" ></pages:CalculatorPage>
     <pages:MoreListPage Title="User" IconImageSource="usersmall"></pages:MoreListPage>
    
 </TabbedPage>

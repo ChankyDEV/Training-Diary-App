@@ -93,9 +93,18 @@ namespace BodyWeight.Pages.PopUps
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-             PopupNavigation.Instance.PopAsync();
-             WeightEvent weight = new WeightEvent(datePicker.Date,double.Parse(weightEntry.Text));
-             MessagingCenter.Send<WeightEvent>(weight,"Added weight");
+            double weightdob = 0;
+            if(Double.TryParse(weightEntry.Text,out weightdob))
+            {
+                PopupNavigation.Instance.PopAsync();
+                WeightEvent weight = new WeightEvent(datePicker.Date, double.Parse(weightEntry.Text));
+                MessagingCenter.Send<WeightEvent>(weight, "Added weight");
+            }
+            else
+            {
+
+            }
+             
         }
     }
 }

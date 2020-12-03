@@ -80,6 +80,11 @@ namespace BodyWeight.PageModels.PlansAndTrainings
             }
             
         });
+        public Command GoBackCommand => new Command(async () =>
+        {
+            await CoreMethods.PopPageModel();
+
+        });
 
 
     }

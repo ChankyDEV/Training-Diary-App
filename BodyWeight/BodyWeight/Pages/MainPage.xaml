@@ -5,24 +5,94 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:controls="clr-namespace:BodyWeight.Helpers"
-                BackgroundImageSource="https://i.pinimg.com/originals/3e/a9/ba/3ea9ba9e84ab6808a394b6aa165c1673.jpg"
+                BackgroundImageSource="gym2"
        
              NavigationPage.HasNavigationBar="False"
              x:Class="BodyWeight.Pages.MainPage">
 
 
-    <StackLayout Padding="0" BackgroundColor="Indigo" Opacity="0.95">
-        <Grid  VerticalOptions="CenterAndExpand">
-            <Image Source="https://www.iconsdb.com/icons/preview/color/FFC21C/arrow-214-xxl.png"/>
-        </Grid>
-        <Grid  VerticalOptions="StartAndExpand">
-            <StackLayout HorizontalOptions="FillAndExpand" Margin="{Binding LoginMargin}">
-                <Button Text="Sign Up"  Command="{Binding SignUpCommand}" TextColor="White" FontAttributes="Bold" CornerRadius="40" BackgroundColor="Transparent" BorderColor="#FFC21C"  BorderWidth="2"/>
+    <Grid  BackgroundColor="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="15*"/>
+        </Grid.RowDefinitions>
 
-                <Button Text="Login" Command="{Binding GoToLogInCommand}" TextColor="Indigo" FontAttributes="Bold" CornerRadius="40" BackgroundColor="#FFC21C" BorderColor="#FFC21C"  BorderWidth="2"/>
+        <StackLayout Padding="0" BackgroundColor="#4FABF7" Opacity="0.3" Grid.RowSpan="5"/>
+        
+        <Image Source="fitness" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" Scale="0.8" />
+
+        
+        <Button     x:Name="GoToLoginButton" Text="Log In" TextColor="WhiteSmoke" 
+                    Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="Center"
+                    FontAttributes="Bold" CornerRadius="10" 
+                    Margin="86,0,86,0"
+                    BackgroundColor="#ea7571" BorderColor="Transparent"  BorderWidth="2"
+                    Clicked="GoToLoginButton_Clicked"
+                    />
+
+        <Frame x:Name="RegisterButtonFrame"  Padding="0" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Margin="86,0,86,0" CornerRadius="10" BackgroundColor="WhiteSmoke" Opacity="0.7">
+            <Button 
+                    HorizontalOptions="FillAndExpand" VerticalOptions="Center"                 
+                    Margin="86,0,86,0" Opacity="0"
+                    BackgroundColor="Transparent" BorderColor="#ea7571"  BorderWidth="2"/>
+        </Frame>
+
+        <Button     x:Name="GoToRegisterButton" Text="Sign Up"  Command="{Binding SignUpCommand}" TextColor="Black" 
+                    Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="Center"
+                    FontAttributes="Bold" CornerRadius="10" 
+                    Margin="86,0,86,0"
+                    BackgroundColor="Transparent" BorderColor="#ea7571"  BorderWidth="2"/>
+
+
+        
+        <!--LOGIN-->
+        <Grid Grid.Row="1"  x:Name="EmailEntry" >
+            <Frame x:Name="name"  Padding="0"  HorizontalOptions="FillAndExpand" VerticalOptions="Center" Margin="86,0,86,0" CornerRadius="10" BackgroundColor="WhiteSmoke" Opacity="0.7">
+                <Button 
+                    HorizontalOptions="FillAndExpand" VerticalOptions="Center"                 
+                    Opacity="0" CornerRadius="10"
+                    BackgroundColor="Transparent" BorderColor="#ea7571"  BorderWidth="2"/>
+            </Frame>
+            <Button 
+                    HorizontalOptions="FillAndExpand" VerticalOptions="Center"                 
+                    Opacity="1" CornerRadius="10" Margin="86,0,86,0" 
+                    BackgroundColor="Transparent" BorderColor="#ea7571"  BorderWidth="2"/>
+            <StackLayout Orientation="Horizontal"  Margin="86,0,86,0">
+                <Image Source="email"  Margin="10,0,0,0" />
+                <controls:MyEntry Placeholder="E-mail" HorizontalOptions="FillAndExpand" />
             </StackLayout>
         </Grid>
-       
-    </StackLayout>
+        <Grid Grid.Row="2"  x:Name="PasswordEntry">
+            <Frame x:Name="pass"  Padding="0"  HorizontalOptions="FillAndExpand" VerticalOptions="Center" Margin="86,0,86,0" CornerRadius="10" BackgroundColor="WhiteSmoke" Opacity="0.7">
+                <Button 
+                    HorizontalOptions="FillAndExpand" VerticalOptions="Center"                 
+                    Opacity="0" CornerRadius="10"
+                    BackgroundColor="Transparent" BorderColor="#ea7571"  BorderWidth="2"/>
+            </Frame>
+            <Button 
+                    HorizontalOptions="FillAndExpand" VerticalOptions="Center"                 
+                    Opacity="1" CornerRadius="10" Margin="86,0,86,0" 
+                    BackgroundColor="Transparent" BorderColor="#ea7571"  BorderWidth="2"/>
+            <StackLayout Orientation="Horizontal"  Margin="86,0,86,0">
+                <Image Source="lock"  Margin="10,0,0,0" />
+                <controls:MyEntry Placeholder="Password" IsPassword="True" HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+        </Grid>
+        <Button Grid.Row="3" x:Name="LoginButton" 
+                Text="Log In"  Command="{Binding LogInCommand}" TextColor="WhiteSmoke" 
+                 HorizontalOptions="FillAndExpand" VerticalOptions="Center"
+                FontAttributes="Bold" CornerRadius="10" 
+                Margin="86,0,86,0"
+                BackgroundColor="#ea7571" BorderColor="Transparent"  BorderWidth="2"/>
+        <Label x:Name="HaveAccText" Text="Dont have account" TextColor="#ea7571" FontAttributes="Bold" Grid.Row="4" VerticalOptions="StartAndExpand" Margin="0,-30,0,0" HorizontalOptions="Center"/>
+
+        <!--REGISTER-->
+        
+        
+
+    </Grid>
 
 </ContentPage>

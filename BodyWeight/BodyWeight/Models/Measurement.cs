@@ -8,7 +8,17 @@ namespace BodyWeight.Models
     {
         public double Weight { get; set; }
         public DateTime MeasurementDate { get; set; }
-        public double Change { get; set; }
+
+        public Measurement()
+        {
+
+        }
+
+        public Measurement(double weight, DateTime measurementDate)
+        {
+            Weight = weight;
+            MeasurementDate = measurementDate;
+        }
 
         public int CompareTo(Measurement other)
         {

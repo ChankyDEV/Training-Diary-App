@@ -4,33 +4,62 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             BackgroundImageSource="https://i.pinimg.com/originals/3e/a9/ba/3ea9ba9e84ab6808a394b6aa165c1673.jpg"
+             BackgroundImageSource="gym2"
               xmlns:controls="clr-namespace:BodyWeight.Helpers"
              NavigationPage.HasNavigationBar="False"
              x:Class="BodyWeight.Pages.LoginPage">
     <ContentPage.Content>
-        <StackLayout Padding="0" BackgroundColor="#FFC21C" Opacity="0.95">
-            
-            <Grid  VerticalOptions="CenterAndExpand">
-                <Image Source="https://www.iconsdb.com/icons/preview/indigo/arrow-214-xxl.png"/>
-            </Grid>
-            <Grid  VerticalOptions="StartAndExpand">
-                <StackLayout HorizontalOptions="FillAndExpand" Margin="{Binding LoginMargin}">
-                    <Label Text="E-mail" TextColor="Indigo" FontAttributes="Bold" FontSize="Medium"/>
-                    <controls:MyEntry MyTintColor="Indigo" Text="{Binding Email}" />
-                    <Label Text="Password" TextColor="Indigo" FontAttributes="Bold" FontSize="Medium"/>
-                    <controls:MyEntry MyTintColor="Indigo" Text="{Binding Password}" />
-                    <Label Text="Forgot password?" TextColor="Indigo" HorizontalTextAlignment="End"/>
-                    <Button Text="Login" Command="{Binding LogInCommand}"
-                            TextColor="#FFC21C" FontAttributes="Bold" CornerRadius="40" BackgroundColor="Indigo" BorderColor="Indigo" Margin="15"  BorderWidth="2"/>
-                    <Label Text="Create account" TextColor="Indigo" FontSize="Medium" HorizontalTextAlignment="Center" FontAttributes="Bold">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding GoToSignUpCommand}"/>
-                        </Label.GestureRecognizers>
-                    </Label>
+        <Grid  BackgroundColor="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="30*"/>
+            </Grid.RowDefinitions>
+            <StackLayout Padding="0" BackgroundColor="#4FABF7" Opacity="0.3" Grid.RowSpan="4"/>
+            <Image Source="fitness" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" Scale="0.8" />
+
+            <Grid Grid.Row="1">
+                <Frame x:Name="name"  Padding="0"  HorizontalOptions="FillAndExpand" VerticalOptions="Center" Margin="86,0,86,0" CornerRadius="10" BackgroundColor="WhiteSmoke" Opacity="0.7">
+                <Button 
+                    HorizontalOptions="FillAndExpand" VerticalOptions="Center"                 
+                    Opacity="0" CornerRadius="10"
+                    BackgroundColor="Transparent" BorderColor="#ea7571"  BorderWidth="2"/>
+                </Frame>
+                <Button 
+                    HorizontalOptions="FillAndExpand" VerticalOptions="Center"                 
+                    Opacity="1" CornerRadius="10" Margin="86,0,86,0" 
+                    BackgroundColor="Transparent" BorderColor="#ea7571"  BorderWidth="2"/>
+                <StackLayout Orientation="Horizontal"  Margin="86,0,86,0">
+                    <Image Source="email"  Margin="10,0,0,0" />
+                    <controls:MyEntry Placeholder="E-mail" HorizontalOptions="FillAndExpand" />
                 </StackLayout>
             </Grid>
+            <Grid Grid.Row="2">
+                <Frame x:Name="pass"  Padding="0"  HorizontalOptions="FillAndExpand" VerticalOptions="Center" Margin="86,0,86,0" CornerRadius="10" BackgroundColor="WhiteSmoke" Opacity="0.7">
+                    <Button 
+                    HorizontalOptions="FillAndExpand" VerticalOptions="Center"                 
+                    Opacity="0" CornerRadius="10"
+                    BackgroundColor="Transparent" BorderColor="#ea7571"  BorderWidth="2"/>
+                </Frame>
+                <Button 
+                    HorizontalOptions="FillAndExpand" VerticalOptions="Center"                 
+                    Opacity="1" CornerRadius="10" Margin="86,0,86,0" 
+                    BackgroundColor="Transparent" BorderColor="#ea7571"  BorderWidth="2"/>
+                <StackLayout Orientation="Horizontal"  Margin="86,0,86,0">
+                    <Image Source="lock"  Margin="10,0,0,0" />
+                    <controls:MyEntry Placeholder="Password" IsPassword="True" HorizontalOptions="FillAndExpand" />
+                </StackLayout>
+            </Grid>
+            <Button Text="Log In"  Command="{Binding GoToLogInCommand}" TextColor="WhiteSmoke" 
+                    Grid.Row="3" HorizontalOptions="FillAndExpand" VerticalOptions="Center"
+                    FontAttributes="Bold" CornerRadius="10" 
+                    Margin="86,0,86,0"
+                    BackgroundColor="#ea7571" BorderColor="Transparent"  BorderWidth="2"/>
 
-        </StackLayout>
+
+
+        </Grid>
+       
     </ContentPage.Content>
 </ContentPage>

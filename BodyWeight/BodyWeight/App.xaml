@@ -7,6 +7,13 @@
              x:Class="BodyWeight.App">
     <Application.Resources>
 
+        <ResourceDictionary >
+            <Color x:Key="MyRed">#ea7571</Color>
+        </ResourceDictionary>
+            
+       
+        
+
         <Style TargetType="Label" x:Key="BodyFont">
             <Setter Property="FontSize" Value="20"/>
         </Style>

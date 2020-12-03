@@ -22,22 +22,22 @@
     <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
         <Frame BackgroundColor="WhiteSmoke" Padding="0" HasShadow="true" CornerRadius="10" WidthRequest="350" HeightRequest="400">
             <StackLayout Padding="10">
-                <Label Text="No activity" TextColor="Indigo" FontAttributes="Bold" FontSize="Medium"/>
+                <Label Text="No activity" TextColor="#ea7571" FontAttributes="Bold" FontSize="Medium"/>
                 <Label Text="Patient in bed. Really low activity." />
 
-                <Label Text="Low activity" TextColor="Indigo" FontAttributes="Bold" FontSize="Medium" />
+                <Label Text="Low activity" TextColor="#ea7571" FontAttributes="Bold" FontSize="Medium" />
                 <Label Text="Seated work. Minimum activity during the day." />
-                
-                <Label Text="Medium activity" TextColor="Indigo" FontAttributes="Bold" FontSize="Medium" />
+
+                <Label Text="Medium activity" TextColor="#ea7571" FontAttributes="Bold" FontSize="Medium" />
                 <Label Text="Seated work with light workouts three times a week or physical work without workouts" />
 
-                <Label Text="Active lifestyle" TextColor="Indigo" FontAttributes="Bold" FontSize="Medium" />
+                <Label Text="Active lifestyle" TextColor="#ea7571" FontAttributes="Bold" FontSize="Medium" />
                 <Label Text="A lot of activity during the day. Light workouts three times a week." />
-                
-                <Label Text="Really active lifestyle" TextColor="Indigo" FontAttributes="Bold" FontSize="Medium" />
+
+                <Label Text="Really active lifestyle" TextColor="#ea7571" FontAttributes="Bold" FontSize="Medium" />
                 <Label Text="Physical work. Hard systhematic workouts three times a week." />
-                
-                <Label Text="Extreamly active lifestyle" TextColor="Indigo" FontAttributes="Bold" FontSize="Medium" />
+
+                <Label Text="Extreamly active lifestyle" TextColor="#ea7571" FontAttributes="Bold" FontSize="Medium" />
                 <Label Text="Professional sportsmanship" />
             </StackLayout>
         </Frame>

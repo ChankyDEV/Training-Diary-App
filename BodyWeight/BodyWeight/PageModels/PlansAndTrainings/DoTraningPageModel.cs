@@ -57,7 +57,11 @@ namespace BodyWeight.PageModels.PlansAndTrainings
         {
             await CoreMethods.PushPageModel<SetWeightAndRepsPageModel>(item);
         });
+        public Command GoBackCommand => new Command(async () =>
+        {
+            await CoreMethods.PopPageModel();
 
+        });
         public override void ReverseInit(object returnedData)
         {
             Excercise ex = returnedData as Excercise;

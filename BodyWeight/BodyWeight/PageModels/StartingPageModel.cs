@@ -24,7 +24,6 @@ namespace BodyWeight.PageModels
         {
 
             GetProfileInformationAndRefreshToken();
-
             Plans = new ObservableCollection<Plan>();
             User = new Account();
 
@@ -78,7 +77,7 @@ namespace BodyWeight.PageModels
                
             }
 
-            UpdateDays();
+
         }
 
         protected override void ViewIsAppearing(object sender, EventArgs e)

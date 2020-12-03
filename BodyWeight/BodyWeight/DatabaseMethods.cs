@@ -80,8 +80,7 @@ namespace BodyWeight
            .OnceAsync<Measurement>()).Select(i => new Measurement
            {
                MeasurementDate=i.Object.MeasurementDate,
-               Weight=i.Object.Weight,
-               Change=i.Object.Change
+               Weight=i.Object.Weight
            }).ToList();
 
         }

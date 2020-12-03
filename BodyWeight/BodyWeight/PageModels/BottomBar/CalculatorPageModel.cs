@@ -23,9 +23,10 @@ namespace BodyWeight.PageModels
         public List<string> Activites { get; set; }
         public string Gender { get; set; } = "Male";
         public string Result { get; set; } = "";
-        public string Weight { get; set; }
-        public string Height { get; set; }
-        public string Age { get; set; }
+        public string ResultSubText { get; set; } = "calories";
+        public string Weight { get; set; } = "";
+        public string Height { get; set; } = "";
+        public string Age { get; set; } = "";
         public string ActivityTitle { get; set; } = "Choose your activity";
         public string PickedActivity { get; set; }
         public string ArrowExpanderSource { get; set; } = "down_arrow";
@@ -61,24 +62,50 @@ namespace BodyWeight.PageModels
         {
         if (ActivityTitle == "Choose your activity")
         {
-            App.Current.MainPage.DisplayAlert("Alert", "Choose your activity!", "Ok");
+                ResultSubText = "Choose your activity";
         }
         else
         {
-            Device.StartTimer(TimeSpan.FromMilliseconds(150), () => {
+            if(formIsValid())
+            {
+                    ResultSubText = "calories";
+                    Device.StartTimer(TimeSpan.FromMilliseconds(150), () => {
 
-                 double ppm = CalculatePPM(Weight,Height,Age,Gender);
-                 double factor = ActivityFactor();
-                 double cpm = ppm * factor;
-                 Result =$"{cpm}";
+                        double ppm = CalculatePPM(Weight, Height, Age, Gender);
+                        double factor = ActivityFactor();
+                        double cpm = Math.Round(ppm * factor);
+                        Result = $"{cpm}";
 
-                return false;
-            });
+                        return false;
+                    });
+            }
+            else
+            {
+                Result = "";
+                ResultSubText = "Fill all the entries";
+            }
+            
             
          }
           
 
         });
+
+        private bool formIsValid()
+        {
+            double weight = 0;
+            double height = 0;
+            double age = 0;
+            if (Double.TryParse(Weight,out weight) && Double.TryParse(Height, out height) && Double.TryParse(Age, out age))
+            {
+                return true;
+            }
+            else
+            {
+                
+                return false;
+            }
+        }
 
         private double ActivityFactor()
         {

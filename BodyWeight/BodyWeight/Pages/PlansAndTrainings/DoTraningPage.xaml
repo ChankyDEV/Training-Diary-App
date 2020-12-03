@@ -4,60 +4,72 @@
              xmlns:controls="clr-namespace:BodyWeight.Helpers"
              x:Class="BodyWeight.Pages.PlansAndTrainings.DoTraningPage"
              NavigationPage.HasNavigationBar="false"
-             BackgroundColor="Indigo"
+             BackgroundColor="WhiteSmoke"
              >
     <ContentPage.Content>
-        <StackLayout BackgroundColor="Indigo" Margin="20">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-            <StackLayout BackgroundColor="Indigo">
-                
-            </StackLayout>
- 
-                <Frame CornerRadius="50">
-                <StackLayout>
-                    <Label Text="ToDo" TextColor="Black" FontSize="Large" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
-                        <controls:ClickableListView ItemsSource="{Binding Excercises}" ItemClickCommand="{Binding ItemListClickedCommand}">
-                            <controls:ClickableListView.ItemTemplate>
-                                    <DataTemplate>
-                                         <ViewCell>
-                                            <ContentView VerticalOptions="Center" >
-                                                 <Label  Text="{Binding ExcerciseName}" HorizontalTextAlignment="Center" FontSize="Medium" TextColor="Black"/>
-                                            </ContentView>
-                                         </ViewCell>
-                                    </DataTemplate>
-                            </controls:ClickableListView.ItemTemplate>
-                        </controls:ClickableListView> 
-                    </StackLayout>
-                </Frame>
-
-
-            <StackLayout >
-                <Frame CornerRadius="50" >
-                    <StackLayout>
-                        <Label Text="Done" TextColor="Black" FontSize="Large" FontAttributes="Bold" HorizontalTextAlignment="Center" />
-                        <controls:ClickableListView ItemsSource="{Binding FinishedExcercises}" >
-                            <controls:ClickableListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ViewCell>
-                                        <ContentView >
-                                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
-                                                <Label  Text="{Binding ExcerciseName}" FontSize="Small" TextColor="Green"/>
-                                            </StackLayout>
-                                        </ContentView>
-                                    </ViewCell>
-                                </DataTemplate>
-                            </controls:ClickableListView.ItemTemplate>
-                        </controls:ClickableListView>
-                        <Button Text="Save Training" Command="{Binding AcceptTrainingCommand}" TextColor="Indigo" FontAttributes="Bold"  FontSize="16" Margin="20"
-                        CornerRadius="40" BackgroundColor="#FFC21C" BorderColor="#FFC21C"  BorderWidth="2"/>
-                    </StackLayout>
-                </Frame>
+            <Image Source="leftArrow" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center" Scale="0.5" Margin="10,0,0,0" Opacity="0.6" >
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding GoBackCommand}"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Label Text="Workout!" Grid.Row="0"  HorizontalOptions="Center"
+                   TextColor="Black" FontSize="Medium"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold"/>
+            
+            <StackLayout Grid.Row="1" Margin="40,0,40,0">
+                <Label Text="Excercises" TextColor="Black" FontSize="Medium"/>
+                <controls:ClickableListView ItemsSource="{Binding Excercises}" ItemClickCommand="{Binding ItemListClickedCommand}"  >
+                    <controls:ClickableListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal" VerticalOptions="Center" >
+                                    <Label  Text="{Binding ExcerciseName}" Margin="20,0,0,0" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" FontSize="Small" />
+                                    <Label  Text="{Binding NumberOfSeries}"  HorizontalTextAlignment="Start" VerticalTextAlignment="Center" FontSize="Small" />
+                                    <Label  Text="x"  HorizontalTextAlignment="Start" VerticalTextAlignment="Center" FontSize="Small" />
+                                    <Label  Text="{Binding Repetitions}"  HorizontalTextAlignment="Start" VerticalTextAlignment="Center" FontSize="Small" />
+                                    <Image Source="right32" Scale="0.5" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </controls:ClickableListView.ItemTemplate>
+                </controls:ClickableListView>
             </StackLayout>
 
-
-            <StackLayout BackgroundColor="Indigo">
-
+            <StackLayout Grid.Row="3" Margin="40,0,40,0" >
+                <Label Text="Done" TextColor="Black" FontSize="Medium"  HorizontalTextAlignment="Start" />
+                <controls:ClickableListView ItemsSource="{Binding FinishedExcercises}" SeparatorVisibility="None" >
+                    <controls:ClickableListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ContentView >
+                                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                                        <Label  Text="{Binding ExcerciseName}" Margin="20,0,0,0" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" FontSize="Small" TextColor="Green" />
+                                        <Label  Text="{Binding NumberOfSeries}"  HorizontalTextAlignment="Start" VerticalTextAlignment="Center" FontSize="Small" TextColor="Green" />
+                                        <Label  Text="x"  HorizontalTextAlignment="Start" VerticalTextAlignment="Center" FontSize="Small" TextColor="Green" />
+                                        <Label  Text="{Binding Repetitions}"  HorizontalTextAlignment="Start" VerticalTextAlignment="Center" FontSize="Small" TextColor="Green" />
+                                    </StackLayout>
+                                </ContentView>
+                            </ViewCell>
+                        </DataTemplate>
+                    </controls:ClickableListView.ItemTemplate>
+                </controls:ClickableListView>
+              
             </StackLayout>
-        </StackLayout>
+
+            <Label Text="Save training" FontSize="Medium" TextColor="#ea7571" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"  Grid.Row="4"  >
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding AcceptTrainingCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

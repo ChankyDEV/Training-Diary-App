@@ -18,12 +18,11 @@ namespace BodyWeight.PageModels
     public partial class StartingPageModel : FreshBasePageModel
     {
         public string Text { get; set; } = "Historia";
-        public ObservableCollection<Measurement> Measurements { get; set; }
+        public ObservableCollection<Changings> Measurements { get; set; }
 
         public PlotModel Model { get; set; }
         public DateTimeAxis XAXIS { get; set; }
         public LinearAxis YAXIS { get; set; }
-
         public LineSeries Series { get; set; }
 
 
@@ -33,9 +32,17 @@ namespace BodyWeight.PageModels
             PrepareLeftAxis();
 
             Series = new LineSeries();
-            Series.Color= OxyColor.Parse("#4B0082");          
+            Series.Color= OxyColor.Parse("#ea7571");    
+            
             Model.Series.Add(Series);
+            Model.TextColor = OxyColor.Parse("#BEBEBE");
+            YAXIS.MajorGridlineColor = OxyColor.Parse("#D0D0D0");
+            YAXIS.TicklineColor = OxyColor.Parse(Color.WhiteSmoke.ToHex());
+            XAXIS.TicklineColor = OxyColor.Parse(Color.WhiteSmoke.ToHex());
+
+            Measurements = new ObservableCollection<Changings>();
             Model.InvalidatePlot(true);
+
         }
 
         private void PrepareLeftAxis()
@@ -71,15 +78,46 @@ namespace BodyWeight.PageModels
         {
            List<Measurement> measurements = await DatabaseMethods.GetMeasurements();
 
-            // todo: sortowanie
-            measurements.Sort((x,y)=> y.MeasurementDate.CompareTo(x.MeasurementDate));
+            if(measurements.Count != 0)
+            {
+                measurements.Sort((x,y)=> y.MeasurementDate.CompareTo(x.MeasurementDate));
+                
+                RedefineList(measurements);
 
+                //RecalculateChanges();
 
-            Measurements = new ObservableCollection<Measurement>(measurements);
+                RedrawPlot();
 
-            RedrawPlot();
+                AddMeasurmentsToPlot();
+              
+            }
+           
+        }
 
-            AddMeasurmentsToPlot();
+        private void RedefineList(List<Measurement> measurements)
+        {
+            Measurements.Clear();
+            int iterator = 0;
+            for (int i = 1; i < measurements.Count; i++)
+            {
+                var change = measurements[i - 1].Weight - measurements[i].Weight;
+                Changings c = new Changings(change, measurements[i - 1].Weight, measurements[i - 1].MeasurementDate);
+                Measurements.Add(c);
+                iterator++;
+            }           
+            Changings ch = new Changings(0, measurements[measurements.Count - 1].Weight, measurements[measurements.Count - 1].MeasurementDate);
+            Measurements.Add(ch);
+        }
+
+        private void RecalculateChanges()
+        {
+            int iterator = 0;
+            for (int i = 1; i < Measurements.Count; i++)
+            {
+                Measurements[iterator].Change = Measurements[i-1].Weight - Measurements[i].Weight;
+                iterator++;
+            }
+            Measurements[Measurements.Count - 1].Change = 0;
         }
 
         private void RedrawPlot()
@@ -114,21 +152,35 @@ namespace BodyWeight.PageModels
             Measurement newMeasurment = new Measurement();
             if(Measurements.Count==0)
             {
-                newMeasurment.Change = 0;
                 newMeasurment.MeasurementDate = obj.Date;
                 newMeasurment.Weight = weight;
             }
             else
             {
-                var count = Measurements.Count-1;
+                
                 Measurement lastMeasurement = new Measurement();
-                lastMeasurement = Measurements[count];
+                lastMeasurement = FindLastMeasurment(obj);
                 newMeasurment.MeasurementDate = obj.Date;
                 newMeasurment.Weight = weight;
-                newMeasurment.Change = newMeasurment.Weight- lastMeasurement.Weight;
             }          
-            DatabaseMethods.AddMeasurementToDatabase(newMeasurment);
-            HandleDatabaseRequest();
+             DatabaseMethods.AddMeasurementToDatabase(newMeasurment);
+             HandleDatabaseRequest();
+        }
+
+        private Measurement FindLastMeasurment(WeightEvent mes)
+        {
+            Measurement m = new Measurement();
+            if (mes.Date < Measurements[Measurements.Count - 1].MeasurementDate)
+            { 
+                m.Weight = mes.Weight;
+                m.MeasurementDate = mes.Date;
+            }
+            else
+            {
+                m = Measurements.Where(d => d.MeasurementDate <= mes.Date).First(); 
+            }
+
+            return m;
         }
 
         private void AddMeasurmentsToPlot()

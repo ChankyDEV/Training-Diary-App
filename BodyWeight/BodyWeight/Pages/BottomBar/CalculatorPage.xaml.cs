@@ -20,14 +20,10 @@ namespace BodyWeight.Pages
         {
             InitializeComponent();
 
-            ActivityExpander.Tapped += ActivityExpander_Tapped;
+
         }
 
-        private void ActivityExpander_Tapped(object sender, EventArgs e)
-        {
-            MessagingCenter.Send(new ExpanderEvent(),"Expander size changed");
-        }
-
+       
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -41,8 +37,6 @@ namespace BodyWeight.Pages
         {
             ActivityExpander.IsExpanded = false;
         }
-
-
 
         protected override void OnDisappearing()
         {
@@ -60,14 +54,14 @@ namespace BodyWeight.Pages
             {
                 SegmentedFrame.TranslateTo(0, SegmentedFrame.TranslationY, 200);
                 FemaleText.TextColor = Color.DarkGray;
-                MaleText.TextColor = Color.FromHex("#FFC21C");
-                
+                MaleText.TextColor = Color.Black;
+
             }
             else
             {
                 SegmentedFrame.TranslateTo(translationWidth, SegmentedFrame.TranslationY,200);
                 MaleText.TextColor = Color.DarkGray;
-                FemaleText.TextColor = Color.FromHex("#FFC21C");
+                FemaleText.TextColor = Color.Black;
             }
         }
 
@@ -106,7 +100,6 @@ namespace BodyWeight.Pages
 
             return translationAnimation;
         }
-
         private Animation LabelTranslationUpAnimation()
         {        
 
@@ -143,5 +136,9 @@ namespace BodyWeight.Pages
             return opacityAnimation;
         }
 
+        private void ActivityExpander_Tapped_1(object sender, EventArgs e)
+        {
+            MessagingCenter.Send(new ExpanderEvent(), "Expander size changed");
+        }
     }
 }
