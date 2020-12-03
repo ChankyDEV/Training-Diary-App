@@ -14,15 +14,14 @@ using Firebase.Database.Query;
 namespace BodyWeight.PageModels
 {
     [AddINotifyPropertyChangedInterface]
-    public class SignPageModel : FreshBasePageModel
+    public partial class MainPageModel 
     {
         public string webApiKey = "AIzaSyDjGLLGY1sWENpq0S07OGvkDm6WyetxyJA";
 
-        public string Email { get; set; } = "";
-        public string Password { get; set; } = "";
+      
 
         public string Name { get; set; } = "";
-        public string Surname { get; set; } = "";
+
 
         public Account Account { get; set; }
 
@@ -38,9 +37,9 @@ namespace BodyWeight.PageModels
                 List<Training> listOfTrainings = new List<Training>();
              
                 
-                DatabaseMethods.WriteUserToDataBase(auth.User.LocalId, Email, Password, Name, Surname, listOfPlans, listOfTrainings);              
+                DatabaseMethods.WriteUserToDataBase(auth.User.LocalId, Email, Password, Name, listOfPlans, listOfTrainings);              
                 string getToken = auth.FirebaseToken;
-                await CoreMethods.PushPageModel<LoginPageModel>();
+                
 
             }
             catch (Exception e)

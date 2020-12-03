@@ -86,13 +86,12 @@ namespace BodyWeight
         }
 
         // Method for posting data
-        async static public void WriteUserToDataBase(string id, string email, string password, string name, string surname, List<Plan> plans, List<Training> trainings)
+        async static public void WriteUserToDataBase(string id, string email, string password, string name, List<Plan> plans, List<Training> trainings)
         {
             authID = id;
             await mDatabase.Child("users").Child(id).Child("info").PostAsync(new Account()
             {
                 Name = name,
-                Surname = surname,
                 Email = email,
                 Password = password
             });

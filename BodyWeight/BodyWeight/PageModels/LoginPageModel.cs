@@ -13,15 +13,11 @@ using BodyWeight.Helpers;
 
 namespace BodyWeight.PageModels
 {
-    public class LoginPageModel : FreshBasePageModel
+    public partial class MainPageModel
     {
-        public string webApiKey = "AIzaSyDjGLLGY1sWENpq0S07OGvkDm6WyetxyJA";
-        public Thickness LoginMargin { get; set; } = new Thickness(50, 0, 50, 0);
 
-        public string Email { get; set; } = "";
-        public string Password { get; set; } = "";
-        public string Name { get; set; } = "";
-        public string Surname { get; set; } = "";
+
+   
 
         public Command LogInCommand => new Command(async() =>
         {
