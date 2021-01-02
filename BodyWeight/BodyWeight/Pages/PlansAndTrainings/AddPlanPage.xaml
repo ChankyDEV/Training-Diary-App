@@ -16,13 +16,13 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Image Source="leftArrow" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center" Scale="0.5" Margin="10,0,0,0" Opacity="0.6" >
+            <Image Source="leftArrow" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center" Scale="0.5" Margin="10,0,0,0"  >
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding GoBackCommand}"/>
                 </Image.GestureRecognizers>
             </Image>
             <Label Text="Add your plan" Grid.Row="0"  HorizontalOptions="Center"
-                   TextColor="Black" FontSize="Medium"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold"/>
+                   TextColor="Black" FontSize="Medium"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
 
 
             <StackLayout HorizontalOptions="FillAndExpand"  Margin="80,10,80,0" Grid.Row="1"  >
@@ -48,7 +48,7 @@
                 </Frame>
             </StackLayout>
 
-            <Grid Grid.Row="2" Margin="40,10,40,0">
+            <Grid Grid.Row="2" HorizontalOptions="FillAndExpand" Padding="10,0,0,0" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -125,13 +125,13 @@
                 </StackLayout>
             </Grid>
 
-            <Grid Grid.Row="3" Margin="42,10,30,0" >
+            <Grid Grid.Row="3" HorizontalOptions="FillAndExpand" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Text="Add excercise" FontSize="Medium" TextColor="#ea7571" HorizontalTextAlignment="Start"   >
+                <Label Text="Add excercise" FontSize="Medium" TextColor="#ea7571" HorizontalTextAlignment="Center"   >
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding AddExcerciseCommand}" />
                     </Label.GestureRecognizers>

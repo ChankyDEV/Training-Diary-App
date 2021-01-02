@@ -27,7 +27,7 @@
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
                         <StackLayout Grid.Column="0">
-                            <Label Text="Calculate your calories" TextColor="Black" FontSize="Medium" Margin="0,12,0,12"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold"/>
+                            <Label Text="Calculate your calories" TextColor="Black" FontSize="Medium" Margin="0,12,0,12"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                         </StackLayout>
  
                     </Grid>

@@ -17,6 +17,19 @@ namespace BodyWeight.Pages
         public MainPage()
         {
             InitializeComponent();
+            double width = mainDisplayInfo.Width;
+
+            EmailEntry.TranslationX = -(width);
+            PasswordEntry.TranslationX = -(width);
+            LoginButton.TranslationX = -(width);
+            DontHaveAccText.TranslationX = -(width);
+
+
+            NameEntry.TranslationX = -(width);
+            HaveAccText.TranslationY = (width / 2);
+
+
+            RegisterButton.TranslationY = (width / 2);
 
         }
         DisplayInfo mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
@@ -24,18 +37,7 @@ namespace BodyWeight.Pages
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            double width = mainDisplayInfo.Width;
-            EmailEntry.TranslationX = -(width);
-            PasswordEntry.TranslationX = -(width);
-            LoginButton.TranslationX = -(width);
-            DontHaveAccText.TranslationX = -(width);
 
-         
-            NameEntry.TranslationX = -(width);
-            HaveAccText.TranslationY = (width / 2);
-
-
-            RegisterButton.TranslationY = (width/2);
         }
 
         
@@ -423,6 +425,6 @@ namespace BodyWeight.Pages
             parentAnimation.Commit(this, "LoginAnimation", 16, 2000);
         }
 
-       
+     
     }
 }

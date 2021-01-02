@@ -9,13 +9,13 @@
         <StackLayout BackgroundColor="WhiteSmoke" >
 
             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="0,20,0,0">
-                <Image Source="leftArrow" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0" Scale="0.5" Opacity="0.6" >
+                <Image Source="leftArrow" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0" Scale="0.5"  >
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoBackCommand}"/>
                     </Image.GestureRecognizers>
                 </Image>
                 <Label Text="Add excercise" HorizontalOptions="CenterAndExpand"
-                   TextColor="Black" FontSize="Medium"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="-60,0,0,0" FontAttributes="Bold" />
+                   TextColor="Black" FontSize="Medium"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="-60,0,0,0"  />
             </StackLayout>
            
             

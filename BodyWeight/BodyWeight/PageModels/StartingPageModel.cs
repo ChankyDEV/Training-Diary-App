@@ -56,7 +56,7 @@ namespace BodyWeight.PageModels
             }
             catch (Exception e)
             {
-                await App.Current.MainPage.DisplayAlert("Alert", "GET PROFILE " + e.Message, "ok");
+                await App.Current.MainPage.DisplayAlert("Alert", "GET PROFILE " + e.Message, "ok");              
             }
 
         }

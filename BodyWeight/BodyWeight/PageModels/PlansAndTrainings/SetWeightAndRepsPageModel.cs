@@ -15,9 +15,9 @@ namespace BodyWeight.PageModels.PlansAndTrainings
     public class SetWeightAndRepsPageModel: FreshBasePageModel
     {
         public Excercise Excercise { get; set; } = new Excercise();
-        public string Weight { get; set; } = "";
-        public double WeightInt { get; set; } = 0;
-        public string Reps { get; set; } = "";
+        public string Weight { get; set; } = "0";
+        public double WeightDouble { get; set; } = 0;
+        public string Reps { get; set; } = "0";
         public int RepsInt { get; set; } = 0;
         public string ExName { get; set; } = "";
         
@@ -37,25 +37,35 @@ namespace BodyWeight.PageModels.PlansAndTrainings
 
         public Command AddWeightCommand => new Command(() =>
          {
-             WeightInt += 2.5;
-             Weight = WeightInt.ToString();
+
+             WeightDouble = ConvertStringToDouble(Weight) + 2.5;
+             Weight = WeightDouble.ToString();
          });
+
+        private double ConvertStringToDouble(string input)
+        {
+            return double.Parse(input);
+        }
+        private int ConvertStringToInt(string input)
+        {
+            return int.Parse(input);
+        }
 
         public Command SubtractWeightCommand => new Command(() =>
         {
-            WeightInt -= 2.5;
-            Weight = WeightInt.ToString();
+            WeightDouble = ConvertStringToDouble(Weight) - 2.5;
+            Weight = WeightDouble.ToString();
         });
 
         public Command AddRepsCommand => new Command(() =>
         {
-            RepsInt += 1;
+            RepsInt = ConvertStringToInt(Reps) + 1;
             Reps = RepsInt.ToString();
         });
 
         public Command SubtractRepsCommand => new Command(() =>
         {
-            RepsInt -= 1;
+            RepsInt = ConvertStringToInt(Reps) - 1;
             Reps = RepsInt.ToString();
         });
 
@@ -68,6 +78,14 @@ namespace BodyWeight.PageModels.PlansAndTrainings
 
         public Command AddSerie => new Command(() =>
         {
+            if (String.IsNullOrWhiteSpace(Weight))
+            {
+                Weight = "0";
+            }
+            if (String.IsNullOrWhiteSpace(Reps))
+            {
+                Reps = "0";
+            }
             Excercise.Series.Add(new Serie() { Weight = double.Parse(Weight), Reps = int.Parse(Reps) });
             Series.Add(new Serie() { Weight = double.Parse(Weight), Reps = int.Parse(Reps) });
         });

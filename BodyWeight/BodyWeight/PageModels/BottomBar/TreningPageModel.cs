@@ -177,7 +177,12 @@ namespace BodyWeight.PageModels
             {
                 return new Command(async (item) =>
                 {
-                    await CoreMethods.PushPageModel<DoTraningPageModel>(item);
+                    DateTime dateTime = DateTime.Now.AddDays(DateIterator);
+                    await CoreMethods.PushPageModel<DoTraningPageModel>(new
+                    {
+                        plan = item,
+                        date = dateTime
+                    });
                     
                 });
             }

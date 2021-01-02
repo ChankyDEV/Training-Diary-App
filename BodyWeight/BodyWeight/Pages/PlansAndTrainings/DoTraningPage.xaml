@@ -10,13 +10,13 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="3*"/>
+                <RowDefinition Height="4*"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="3*"/>
+                <RowDefinition Height="4*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Image Source="leftArrow" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center" Scale="0.5" Margin="10,0,0,0" Opacity="0.6" >
+            <Image Source="leftArrow" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center" Scale="0.5" Margin="10,0,0,0"  >
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding GoBackCommand}"/>
                 </Image.GestureRecognizers>
@@ -26,7 +26,7 @@
             
             <StackLayout Grid.Row="1" Margin="40,0,40,0">
                 <Label Text="Excercises" TextColor="Black" FontSize="Medium"/>
-                <controls:ClickableListView ItemsSource="{Binding Excercises}" ItemClickCommand="{Binding ItemListClickedCommand}"  >
+                <controls:ClickableListView ItemsSource="{Binding Excercises}" VerticalOptions="Fill" ItemClickCommand="{Binding ItemListClickedCommand}"  >
                     <controls:ClickableListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -43,7 +43,7 @@
                 </controls:ClickableListView>
             </StackLayout>
 
-            <StackLayout Grid.Row="3" Margin="40,0,40,0" >
+            <StackLayout Grid.Row="3" Margin="40,0,40,0"  >
                 <Label Text="Done" TextColor="Black" FontSize="Medium"  HorizontalTextAlignment="Start" />
                 <controls:ClickableListView ItemsSource="{Binding FinishedExcercises}" SeparatorVisibility="None" >
                     <controls:ClickableListView.ItemTemplate>

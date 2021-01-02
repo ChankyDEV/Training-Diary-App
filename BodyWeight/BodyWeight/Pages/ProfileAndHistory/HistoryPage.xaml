@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BodyWeight.Pages.ProfileAndHistory.HistoryPage"
+              NavigationPage.HasNavigationBar="False"
+             xmlns:controls="clr-namespace:BodyWeight.Helpers"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             >
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="10*"/>
+            </Grid.RowDefinitions>
+
+            <Image Source="leftArrow" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0" Scale="0.5"  >
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding GoBackCommand}"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Label Text="History"  HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="Medium"/>
+
+                <controls:ClickableListView ItemsSource="{Binding TrainingHistory}" Grid.Row="1" SelectionMode="None" SeparatorVisibility="None" HasUnevenRows="True" >
+                    <controls:ClickableListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                            <yummy:PancakeView Margin="20,10,20,5" CornerRadius="10" >
+                                    <yummy:PancakeView.Shadow>
+                                        <yummy:DropShadow Color="#000000" Offset="1,1" />
+                                    </yummy:PancakeView.Shadow>
+                                <Grid BackgroundColor="White" Padding="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Label Text="{Binding Plan}" FontSize="Large" Grid.Row="0" HorizontalOptions="CenterAndExpand"/>
+                                    <Label Text="{Binding Date, StringFormat='{0:dd MMM yyyy}'}" FontSize="Small" HorizontalOptions="CenterAndExpand" Grid.Row="1"/>
+                                    <Expander  ExpandAnimationLength="200" Grid.Row="2" Padding="0,10,0,0"
+                                               CollapseAnimationLength="200" VerticalOptions="CenterAndExpand"  
+                                               HorizontalOptions="FillAndExpand"  >
+                                        <Expander.Header >
+                                            <StackLayout HorizontalOptions="CenterAndExpand">
+                                                <Image Source="down_arrow" Scale="0.8"/>
+                                            </StackLayout>
+
+                                        </Expander.Header>
+                                        <Expander.ContentTemplate >
+                                            <DataTemplate >
+                                                <StackLayout Margin="20,20,0,0" >
+                                                    <CarouselView  ItemsSource="{Binding TodayExcercises}" 
+                                                                   
+                                                                   HeightRequest="230" IndicatorView="indicator"  >
+                                                        <CarouselView.ItemsLayout>
+                                                            <LinearItemsLayout Orientation="Horizontal"
+                                                                                SnapPointsType="MandatorySingle"                                                                              
+                                                                               />
+                                                        </CarouselView.ItemsLayout>
+                                                        <CarouselView.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <StackLayout >
+                                                                    <Label Text="{Binding ExcerciseName}"/>
+                                                                    <controls:ClickableListView ItemsSource="{Binding Series}" SeparatorVisibility="None"  VerticalScrollBarVisibility="Never" SelectionMode="None" RowHeight="30">
+                                                                        <controls:ClickableListView.ItemTemplate>
+                                                                            <DataTemplate>
+                                                                                <ViewCell>
+                                                                                    <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                                                                                        <Label Text="{Binding Reps}"/>
+                                                                                        <Label Text="x "/>
+                                                                                        <Label Text="{Binding Weight}"/>
+                                                                                        <Label Text=" [kg]"/>
+                                                                                    </StackLayout>
+                                                                                </ViewCell>
+                                                                            </DataTemplate>
+                                                                        </controls:ClickableListView.ItemTemplate>
+                                                                    </controls:ClickableListView>
+                                                                </StackLayout>
+                                                            </DataTemplate>
+                                                        </CarouselView.ItemTemplate>
+                                                    </CarouselView>
+                                                    <IndicatorView
+                                                         x:Name="indicator"
+                                                         AbsoluteLayout.LayoutBounds="0.5,0.95,100,100"
+                                                         AbsoluteLayout.LayoutFlags="PositionProportional"
+                                                         IndicatorColor="LightGray"
+                                                         IndicatorSize="7"
+                                                         SelectedIndicatorColor="Black" />
+                                                </StackLayout>
+                                            </DataTemplate>
+                                        </Expander.ContentTemplate>
+
+                                    </Expander>
+                                </Grid>
+                            </yummy:PancakeView>
+                            </ViewCell>
+                        </DataTemplate>
+                    </controls:ClickableListView.ItemTemplate>
+                </controls:ClickableListView>
+         
+            
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

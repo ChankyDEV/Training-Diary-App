@@ -66,7 +66,7 @@
                     BackgroundColor="Transparent" BorderColor="#ea7571"  BorderWidth="2"/>
             <StackLayout Orientation="Horizontal"  Margin="86,0,86,0">
                 <Image Source="email"  Margin="10,0,0,0" />
-                <controls:MyEntry Placeholder="E-mail" Text="{Binding Email}" HorizontalOptions="FillAndExpand" />
+                <controls:MyEntry Placeholder="E-mail" Text="{Binding Email}" Keyboard="Email" ReturnType="Next" HorizontalOptions="FillAndExpand" ClearButtonVisibility="WhileEditing" />
             </StackLayout>
         </Grid>
         <Grid Grid.Row="3"  x:Name="PasswordEntry">

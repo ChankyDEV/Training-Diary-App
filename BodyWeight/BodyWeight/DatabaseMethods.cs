@@ -11,14 +11,22 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Newtonsoft.Json.Linq;
+using Firebase.Storage;
+using Firebase.Auth;
 
 namespace BodyWeight
 {
     public static class DatabaseMethods
     {
-        public static FirebaseClient mDatabase { get; set; }= new FirebaseClient("https://trainingnoteapp.firebaseio.com");
+        private static string webApiKey = "AIzaSyDjGLLGY1sWENpq0S07OGvkDm6WyetxyJA";
         public static string authID;
-       
+        private static string storageID = "trainingnoteapp.appspot.com";
+        private static string filename = "profile.jpg";
+        private static FirebaseClient mDatabase { get; set; }= new FirebaseClient("https://trainingnoteapp.firebaseio.com");
+        private static FirebaseStorage mStorage { get; set; } = new FirebaseStorage(storageID);
+        
+
+        
 
         // Method for getting data
         async static public  Task<Account> GetUserbyEmail()
@@ -29,8 +37,11 @@ namespace BodyWeight
         
             return acc;
         }
-        async static private Task<List<Account>> GetAccount()
+        async static public Task<List<Account>> GetAccount()
         {
+            var a = authID;
+
+
             return (await mDatabase
               .Child("users")
               .Child(authID)
@@ -84,6 +95,15 @@ namespace BodyWeight
            }).ToList();
 
         }
+        public static async Task<string> GetProfileImage()
+        {
+            return await mStorage
+                .Child(authID)
+                .Child(filename)
+                .GetDownloadUrlAsync();
+
+
+        }
 
         // Method for posting data
         async static public void WriteUserToDataBase(string id, string email, string password, string name, List<Plan> plans, List<Training> trainings)
@@ -107,6 +127,26 @@ namespace BodyWeight
         async static public void AddMeasurementToDatabase(Measurement measurement)
         {
             await mDatabase.Child("users").Child(authID).Child("measurements").PostAsync(measurement);
+        }
+        async static public Task<string> StoreImage(System.IO.Stream imageStream)
+        {
+            var stroageImage = await mStorage
+                .Child(authID)
+                .Child("profile.jpg")
+                .PutAsync(imageStream);
+            string imgurl = stroageImage;
+            return imgurl;
+
+        }
+    
+    
+        // User update
+        async static public void ResetPassword()
+        {
+            var authProvider = new FirebaseAuthProvider(new FirebaseConfig(webApiKey));
+            var profile = await GetAccount();
+            var email = profile[0].Email;
+            await authProvider.SendPasswordResetEmailAsync(email);
         }
     }
 }

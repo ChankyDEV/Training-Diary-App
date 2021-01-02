@@ -9,6 +9,7 @@ using FreshMvvm;
 using PropertyChanged;
 using Xamarin.Forms;
 
+
 namespace BodyWeight.PageModels.PlansAndTrainings
 {
     [AddINotifyPropertyChangedInterface]
@@ -35,7 +36,10 @@ namespace BodyWeight.PageModels.PlansAndTrainings
         }
         public override void Init(object initData)
         {
-            TodaysPlan = initData as Plan;
+            var data = initData as dynamic;
+            
+            TodaysPlan = data.plan;
+            TodaysTraining.Date = data.date;
          
             foreach(var item in TodaysPlan.Excercises)
             {
@@ -47,8 +51,6 @@ namespace BodyWeight.PageModels.PlansAndTrainings
 
         public Command AcceptTrainingCommand => new Command(async() =>
         {
-            TodaysTraining.Date = DateTime.Now;
-        
      
             await CoreMethods.PopPageModel(TodaysTraining);
         });

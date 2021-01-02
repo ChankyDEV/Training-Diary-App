@@ -13,6 +13,12 @@ namespace BodyWeight.PageModels
         public string Password { get; set; } = "";
 
 
+        private IAuth authenticate;
+
+        public MainPageModel(IAuth auth)
+        {
+            this.authenticate = auth;
+        }
 
     }
 }

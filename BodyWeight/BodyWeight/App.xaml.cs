@@ -20,7 +20,7 @@ namespace BodyWeight
             }
             else
             {
-                MainPage = new FreshNavigationContainer(FreshPageModelResolver.ResolvePageModel<MainPageModel>());
+                MainPage = new FreshNavigationContainer(FreshPageModelResolver.ResolvePageModel<MainPageModel>(Id,new MainPageModel(new AuthRepository())));
             }
            
            

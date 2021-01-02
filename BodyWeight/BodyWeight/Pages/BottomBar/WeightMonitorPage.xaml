@@ -29,7 +29,7 @@
                     <ColumnDefinition Width="8*"/>
                     <ColumnDefinition Width="*"/>
               </Grid.ColumnDefinitions>
-                <Label Text="Body measurements" TextColor="Black" FontAttributes="Bold" FontSize="Medium" Margin="0,12,0,12" Grid.Column="1"
+                <Label Text="Body measurements" TextColor="Black"  FontSize="Medium" Margin="0,12,0,12" Grid.Column="1"
                        VerticalTextAlignment="Center"  HorizontalTextAlignment="Center"/>
 
                 <Label Text="Add" TextColor="#ea7571" Grid.Column="2" 
