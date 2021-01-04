@@ -124,7 +124,7 @@ namespace BodyWeight
         {
             await mDatabase.Child("users").Child(authID).Child("trainings").PostAsync(training);
         }
-        async static public void AddMeasurementToDatabase(Measurement measurement)
+        async static public Task AddMeasurementToDatabase(Measurement measurement)
         {
             await mDatabase.Child("users").Child(authID).Child("measurements").PostAsync(measurement);
         }

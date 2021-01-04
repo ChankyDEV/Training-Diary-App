@@ -168,7 +168,7 @@ namespace BodyWeight.PageModels
                 newMeasurment.MeasurementDate = obj.Date;
                 newMeasurment.Weight = weight;
             }          
-             DatabaseMethods.AddMeasurementToDatabase(newMeasurment);
+             await DatabaseMethods.AddMeasurementToDatabase(newMeasurment);
              await HandleDatabaseRequest();
         }
 
