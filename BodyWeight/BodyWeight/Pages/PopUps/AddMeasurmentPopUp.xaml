@@ -31,7 +31,9 @@
                 </Frame>
                 <Label Text="Weight" FontSize="Micro" />
                 <Frame  HasShadow="True"  Padding="0" >
-                    <controls:MyEntry x:Name="weightEntry" Placeholder="69.0" Keyboard="Numeric" HorizontalTextAlignment="Center"/>
+                    <controls:MyEntry x:Name="weightEntry" Placeholder="69,0" 
+                                      
+                                      Keyboard="Numeric" HorizontalTextAlignment="Center"/>
                 </Frame>
 
                 <Frame HorizontalOptions="Center" VerticalOptions="EndAndExpand" 

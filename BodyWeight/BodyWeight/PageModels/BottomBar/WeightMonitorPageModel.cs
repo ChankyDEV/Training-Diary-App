@@ -3,7 +3,6 @@ using FreshMvvm;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
@@ -12,6 +11,7 @@ using Rg.Plugins.Popup.Services;
 using BodyWeight.Pages.PopUps;
 using BodyWeight.Events;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace BodyWeight.PageModels
 {
@@ -19,12 +19,13 @@ namespace BodyWeight.PageModels
     {
         public string Text { get; set; } = "Historia";
         public ObservableCollection<Changings> Measurements { get; set; }
-
         public PlotModel Model { get; set; }
         public DateTimeAxis XAXIS { get; set; }
         public LinearAxis YAXIS { get; set; }
         public LineSeries Series { get; set; }
 
+        public bool IsChartLoading { get; set; } = true;
+        public bool IsChartVisible { get; set; } = false;
 
         private void DrawPlot()
         {
@@ -67,14 +68,18 @@ namespace BodyWeight.PageModels
             Model.Axes.Add(XAXIS);
         }
 
-        private void ConfigurePlot(PageEvent obj)
+        private async void ConfigurePlot(PageEvent obj)
         {
             // when downolad the measurments look for the oldest one and draw axes diffrently
-            HandleDatabaseRequest();
-            
+            IsChartLoading = true;
+            IsChartVisible = false;
+            await HandleDatabaseRequest();
+            IsChartLoading = false;
+            IsChartVisible = true;
+
         }
 
-        private async void HandleDatabaseRequest()
+        private async Task HandleDatabaseRequest()
         {
            List<Measurement> measurements = await DatabaseMethods.GetMeasurements();
 
@@ -143,7 +148,7 @@ namespace BodyWeight.PageModels
 
         });
 
-        private void AddWeight(WeightEvent obj)
+        private async void AddWeight(WeightEvent obj)
         {
             double date = DateTimeAxis.ToDouble(obj.Date);
             double weight = obj.Weight;
@@ -164,7 +169,7 @@ namespace BodyWeight.PageModels
                 newMeasurment.Weight = weight;
             }          
              DatabaseMethods.AddMeasurementToDatabase(newMeasurment);
-             HandleDatabaseRequest();
+             await HandleDatabaseRequest();
         }
 
         private Measurement FindLastMeasurment(WeightEvent mes)

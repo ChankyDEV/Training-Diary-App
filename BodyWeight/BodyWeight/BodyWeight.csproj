@@ -11,6 +11,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ReusableViews\**" />
+    <EmbeddedResource Remove="ReusableViews\**" />
+    <None Remove="ReusableViews\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="DocumentFormat.OpenXml" Version="2.11.3" />
     <PackageReference Include="FirebaseAuthentication.net" Version="3.4.0" />
     <PackageReference Include="FirebaseDatabase.net" Version="4.0.4" />
@@ -87,9 +93,5 @@
     <EmbeddedResource Update="Pages\BottomBar\TreningPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ReusableViews\" />
   </ItemGroup>
 </Project>

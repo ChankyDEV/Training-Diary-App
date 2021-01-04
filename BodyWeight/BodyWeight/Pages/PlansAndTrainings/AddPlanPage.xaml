@@ -16,11 +16,12 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Image Source="leftArrow" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center" Scale="0.5" Margin="10,0,0,0"  >
-                <Image.GestureRecognizers>
+            <Frame Grid.Row="0" HasShadow="False"  BackgroundColor="WhiteSmoke" HorizontalOptions="Start" Padding="10,0,10,0">
+                <Image Source="leftArrow" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Scale="0.5" />
+                <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding GoBackCommand}"/>
-                </Image.GestureRecognizers>
-            </Image>
+                </Frame.GestureRecognizers>
+            </Frame>
             <Label Text="Add your plan" Grid.Row="0"  HorizontalOptions="Center"
                    TextColor="Black" FontSize="Medium"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
 
@@ -125,32 +126,26 @@
                 </StackLayout>
             </Grid>
 
-            <Grid Grid.Row="3" HorizontalOptions="FillAndExpand" >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <Label Text="Add excercise" FontSize="Medium" TextColor="#ea7571" HorizontalTextAlignment="Center"   >
+                <Label Text="Add excercise" Grid.Row="3" FontSize="Medium" TextColor="#ea7571" HorizontalTextAlignment="Center"   >
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding AddExcerciseCommand}" />
                     </Label.GestureRecognizers>
                 </Label>
 
-                <Label Text="Remove excercise" Grid.Column="1" FontSize="Medium" TextColor="#ea7571" HorizontalTextAlignment="Start"    >
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding RemoveCommand}" />
-                    </Label.GestureRecognizers>
-                </Label>
-
-            </Grid>
 
             <StackLayout Grid.Row="4" Margin="40,10,40,0">
                 <Label Text="Excercises" TextColor="Black" FontSize="Medium"/>
-                <controls:ClickableListView ItemsSource="{Binding Excercises}" ItemClickCommand="{Binding ItemClickedCommand}" >
+                <controls:ClickableListView x:Name="ListOfExs" ItemsSource="{Binding Excercises}" ItemClickCommand="{Binding ItemClickedCommand}" >
                     <controls:ClickableListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
+                                <ViewCell.ContextActions>
+                                   <MenuItem Command="{Binding Path=BindingContext.RemoveCommand, Source={x:Reference ListOfExs}}" 
+                                             CommandParameter="{Binding .}" 
+                                             Text="Delete" IsDestructive="True"
+                                             
+                                             />
+                                </ViewCell.ContextActions>
                                 <StackLayout Orientation="Horizontal" VerticalOptions="Center">
                                     <Label  FontSize="Small" LineBreakMode="NoWrap" Text="{Binding ExcerciseName}"/>
                                     <Label  FontSize="Small" LineBreakMode="NoWrap" Text=": "/>

@@ -6,6 +6,8 @@
              x:Class="BodyWeight.Pages.ProfileAndHistory.ProfilePage">
     <ContentPage.Content>
         <Grid>
+            <ActivityIndicator VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"  IsRunning="{Binding IsProfileLoading}" />
+            <Grid IsVisible="{Binding IsProfileVisable}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="4*"/>
@@ -90,5 +92,7 @@
             
             
         </Grid>
+        </Grid>
+            
     </ContentPage.Content>
 </ContentPage>

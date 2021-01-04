@@ -24,13 +24,33 @@ namespace BodyWeight.PageModels.ProfileAndHistory
         public int TrainingsCount { get; set; } = 0;
         public int MeasurmentsCount { get; set; } = 0;
 
-        public ProfilePageModel()
+        public bool IsProfileLoading { get; set; } = true;
+        public bool IsProfileVisable { get; set; } = false;
+      
+
+        protected override void ViewIsAppearing(object sender, EventArgs e)
         {
-            GetProfileImage();
-            GetUserInformation();
+            new Action(async () => await GetData())();
+            
         }
 
-        private async void GetUserInformation()
+        private async Task GetData()
+        {
+            try
+            {
+                await GetProfileImage();
+                await GetUserInformation();
+            }
+            catch (Exception e)
+            {
+                await CoreMethods.PopPageModel();
+            }
+            
+            IsProfileLoading = false;
+            IsProfileVisable = true;
+        }
+
+        private async Task GetUserInformation()
         {
             var plans = await DatabaseMethods.GetPlans();
             var trainings = await DatabaseMethods.GetTrainings();
@@ -47,7 +67,7 @@ namespace BodyWeight.PageModels.ProfileAndHistory
 
         }
 
-        private async void GetProfileImage()
+        private async Task GetProfileImage()
         {
             try
             {

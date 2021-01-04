@@ -93,18 +93,52 @@ namespace BodyWeight.Pages.PopUps
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-            double weightdob = 0;
-            if(Double.TryParse(weightEntry.Text,out weightdob))
+            if (isFormValid())
             {
-                PopupNavigation.Instance.PopAsync();
-                WeightEvent weight = new WeightEvent(datePicker.Date, double.Parse(weightEntry.Text));
-                MessagingCenter.Send<WeightEvent>(weight, "Added weight");
+                double weightdob = 0;
+                if (Double.TryParse(weightEntry.Text, out weightdob))
+                {
+                    PopupNavigation.Instance.PopAsync();
+                    WeightEvent weight = new WeightEvent(datePicker.Date, double.Parse(weightEntry.Text));
+                    weight.Weight = Math.Round(weight.Weight,1);
+                    MessagingCenter.Send<WeightEvent>(weight, "Added weight");
+                }
+                else
+                {
+
+                }
             }
             else
             {
 
             }
+            
              
+        }
+
+        private bool isFormValid()
+        {
+            if (!String.IsNullOrWhiteSpace(weightEntry.Text))
+            {
+                var weight = 0.0;
+                try
+                {
+                    weight = double.Parse(weightEntry.Text);
+                    if (weight < 0 || weight > 500)
+                    {
+                        return false;
+                    }
+                    return true;
+                }
+                catch(Exception e)
+                {
+
+                }
+               
+               
+            }
+            return false;
+            
         }
     }
 }

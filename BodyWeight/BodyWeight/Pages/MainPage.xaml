@@ -5,8 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:controls="clr-namespace:BodyWeight.Helpers"
-                BackgroundImageSource="gym2"
-       
+             BackgroundImageSource="gym2"      
              NavigationPage.HasNavigationBar="False"
              x:Class="BodyWeight.Pages.MainPage">
 
@@ -22,7 +21,8 @@
             <RowDefinition Height="15*"/>
         </Grid.RowDefinitions>
 
-        <StackLayout Padding="0" BackgroundColor="#4FABF7" Opacity="0.3" Grid.RowSpan="7"/>
+        
+         <StackLayout Padding="0" BackgroundColor="#4FABF7" Opacity="0.3" Grid.RowSpan="7"/>
         
         <Image Source="fitness" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="EndAndExpand" Scale="0.8" />
 
@@ -118,7 +118,6 @@
         
         <Button Grid.Row="5" x:Name="RegisterButton" 
                 Command="{Binding SignUpCommand}"
-                Clicked="HaveAccText_Tapped"
                 Text="Register"  TextColor="WhiteSmoke" 
                 HorizontalOptions="FillAndExpand" VerticalOptions="Center"
                 FontAttributes="Bold" CornerRadius="10" 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BodyWeight.Events;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace BodyWeight.Pages
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
+        bool CanRegister = false;
         public MainPage()
         {
             InitializeComponent();
@@ -37,10 +39,19 @@ namespace BodyWeight.Pages
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
+            MessagingCenter.Subscribe<CorrectRegisterEvent>(this, "Correct register", CanMakeRegisterAnimation);
         }
 
-        
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MessagingCenter.Unsubscribe<CorrectRegisterEvent>(this, "Correct register");
+        }
+
+        private void CanMakeRegisterAnimation(CorrectRegisterEvent obj)
+        {
+            CanRegister = true;
+        }
 
         private void GoToLoginButton_Clicked(object sender, EventArgs e)
         {
@@ -425,6 +436,6 @@ namespace BodyWeight.Pages
             parentAnimation.Commit(this, "LoginAnimation", 16, 2000);
         }
 
-     
+       
     }
 }

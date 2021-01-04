@@ -19,14 +19,17 @@ namespace BodyWeight.PageModels
 
         public string webApiKey = "AIzaSyDjGLLGY1sWENpq0S07OGvkDm6WyetxyJA";
 
-       
+        public bool IsScreenVisable { get; set; }
+        public bool IsLoading { get; set; }
         public StartingPageModel()
         {
-
+            
+            IsLoading = true;
+            IsScreenVisable = false;
             GetProfileInformationAndRefreshToken();
             Plans = new ObservableCollection<Plan>();
             User = new Account();
-
+            
             CreateActivitesCollection();
 
             Model = new PlotModel();
@@ -70,6 +73,8 @@ namespace BodyWeight.PageModels
             if (Session.LoggedUser.Plans != null)
             {
                 GetPlanForSpecficDay();
+                IsLoading = false;
+                IsScreenVisable = true;
             }
             else
             {
@@ -87,6 +92,8 @@ namespace BodyWeight.PageModels
             MessagingCenter.Subscribe<WeightEvent>(this, "Added weight", AddWeight);
             MessagingCenter.Subscribe<PageEvent>(this, "User chose weight page", ConfigurePlot);
         }
+
+        
 
         protected override void ViewIsDisappearing(object sender, EventArgs e)
         {

@@ -82,7 +82,7 @@ namespace BodyWeight.PageModels
             else
             {
                 Result = "";
-                ResultSubText = "Fill all the entries";
+                ResultSubText = "Fill all the entries properly";
             }
             
             
@@ -98,6 +98,10 @@ namespace BodyWeight.PageModels
             double age = 0;
             if (Double.TryParse(Weight,out weight) && Double.TryParse(Height, out height) && Double.TryParse(Age, out age))
             {
+                if((weight < 0 || weight > 500) || (height < 0 || height > 500) || (age < 0 || age>120))
+                {
+                    return false;
+                }
                 return true;
             }
             else
@@ -120,7 +124,7 @@ namespace BodyWeight.PageModels
             var age = double.Parse(a);
             int constVal = Gender == "Male" ? 5 : -161;
 
-            var result = (10 * weight) + (6.25 * height) - (5 * age) + constVal;
+            var result = (10 * Math.Round(weight)) + (6.25 * Math.Round(height)) - (5 * Math.Round(age)) + constVal;
 
             return result;
         }

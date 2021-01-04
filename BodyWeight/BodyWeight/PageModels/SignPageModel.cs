@@ -11,6 +11,8 @@ using PropertyChanged;
 using Firebase.Database;
 using Firebase.Database.Query;
 using System.Net.Mail;
+using BodyWeight.Exceptions;
+using BodyWeight.Events;
 
 namespace BodyWeight.PageModels
 {
@@ -28,12 +30,16 @@ namespace BodyWeight.PageModels
             {
                 try
                 {
-                    var uid = await authenticate.RegisterWithEmailAndPassword(Email, Password);
+                    var uid = await FreshIOC.Container.Resolve<IAuth>().RegisterWithEmailAndPassword(Email, Password);
 
+                    MessagingCenter.Send<CorrectRegisterEvent>(new CorrectRegisterEvent(), "Correct register");
                     List<Plan> listOfPlans = new List<Plan>();
-                    List<Training> listOfTrainings = new List<Training>();
-                    
-                    DatabaseMethods.WriteUserToDataBase(uid, Email, Password, Name, listOfPlans, listOfTrainings);              
+                    List<Training> listOfTrainings = new List<Training>();                 
+                    DatabaseMethods.WriteUserToDataBase(uid, Email, Password, Name, listOfPlans, listOfTrainings);
+
+                    await FreshIOC.Container.Resolve<IAuth>().LoginWithEmailAndPassword(Email, Password);
+                    await CoreMethods.PushPageModel<StartingPageModel>();
+                    CoreMethods.RemoveFromNavigation<MainPageModel>();
                 }
                 catch (Exception e)
                 {
@@ -49,8 +55,8 @@ namespace BodyWeight.PageModels
                 }
             }
             else
-            {
-                await App.Current.MainPage.DisplayAlert("Warning", "Password has to be longer than 6 characters or You tried to register with invalid email", "Ok");
+            {                
+               // await App.Current.MainPage.DisplayAlert("Warning", "Password has to be longer than 6 characters or You tried to register with invalid email", "Ok");
             }
             
 
@@ -70,12 +76,21 @@ namespace BodyWeight.PageModels
 
         private bool validatePassword()
         {
-            if(Password.Length >= 6)
+            try
             {
-                return true;
+                if(Password.Length >= 6)
+                {
+                    return true;
+                }
+                else
+                {
+                    throw new ShortPasswordException();                 
+                }
+            
             }
-            else
-            {
+            catch (ShortPasswordException s)
+            {              
+                App.Current.MainPage.DisplayAlert("Warning","Password is too short","OK");
                 return false;
             }
             
@@ -89,6 +104,7 @@ namespace BodyWeight.PageModels
             }
             catch (FormatException e)
             {
+                App.Current.MainPage.DisplayAlert("Warning", "Email format is not correct", "OK");
                 return false;
             }
             catch(ArgumentException e)

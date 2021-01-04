@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Windows.Input;
 using BodyWeight.Models;
 using DocumentFormat.OpenXml.Spreadsheet;
 using FreshMvvm;
@@ -20,7 +21,8 @@ namespace BodyWeight.PageModels.PlansAndTrainings
         public string Reps { get; set; } = "0";
         public int RepsInt { get; set; } = 0;
         public string ExName { get; set; } = "";
-        
+
+        public ICommand RemoveCommand { get; set; }
         public ObservableCollection<Serie> Series { get; set; }
 
         public override void Init(object initData)
@@ -32,8 +34,18 @@ namespace BodyWeight.PageModels.PlansAndTrainings
         public SetWeightAndRepsPageModel()
         {
             Series = new ObservableCollection<Serie>();
+            RemoveCommand = new Command(RemoveAction);
         }
 
+        private void RemoveAction(object obj)
+        {
+            Serie serie = obj as Serie;
+
+            if (serie != null)
+            {
+                Series.Remove(serie);
+            }
+        }
 
         public Command AddWeightCommand => new Command(() =>
          {
@@ -71,8 +83,17 @@ namespace BodyWeight.PageModels.PlansAndTrainings
 
         public Command SaveExcerciseCommand => new Command(async() =>
         {
-            Excercise.Series = Series.ToList();
-            await CoreMethods.PopPageModel(Excercise);
+            if(Series.Count!=0)
+            {
+                Excercise.Series = Series.ToList();
+                await CoreMethods.PopPageModel(Excercise);
+            }
+            else
+            {
+
+            }
+            
+            
         });
 
 

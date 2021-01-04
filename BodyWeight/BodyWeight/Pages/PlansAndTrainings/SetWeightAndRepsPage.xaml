@@ -19,11 +19,12 @@
 
 
 
-            <Image Source="leftArrow" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center" Scale="0.5" Margin="10,0,0,0"  >
-                <Image.GestureRecognizers>
+            <Frame Grid.Row="0" HasShadow="False"  BackgroundColor="WhiteSmoke" HorizontalOptions="Start" Padding="10,0,10,0">
+                <Image Source="leftArrow" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Scale="0.5" />
+                <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding GoBackCommand}"/>
-                </Image.GestureRecognizers>
-            </Image>
+                </Frame.GestureRecognizers>
+            </Frame>
             <Label Text="{Binding ExName}" Grid.Row="0"  HorizontalOptions="Center"
                    TextColor="Black" FontSize="Medium"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
 
@@ -106,35 +107,34 @@
                 </Image>
             </Grid>
 
-                <Grid Grid.Row="3" Margin="40,10,40,0" >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                
 
-                    <Label Text="Add serie" FontSize="Medium" TextColor="#ea7571" HorizontalTextAlignment="Center"   >
+                    <Label Text="Add serie" Grid.Row="3" FontSize="Medium" TextColor="#ea7571" HorizontalTextAlignment="Center"   >
                         <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding AddSerie}" />
                         </Label.GestureRecognizers>
                     </Label>
 
-                    <Label Text="Remove serie" Grid.Column="1" FontSize="Medium" TextColor="#ea7571" HorizontalTextAlignment="Center"    >
-                        <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding RemoveSerie}" />
-                        </Label.GestureRecognizers>
-                    </Label>
+                 
 
-                </Grid>
+                
 
             <StackLayout Grid.Row="4" Margin="40,0,40,0" >
                 <Label Text="Series" TextColor="Black" FontSize="Medium"  HorizontalTextAlignment="Start" />
-                <ListView ItemsSource="{Binding Series}">
+                <ListView ItemsSource="{Binding Series}" x:Name="ListOfSeries">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
+                                <ViewCell.ContextActions>
+                                    <MenuItem Command="{Binding Path=BindingContext.RemoveCommand, Source={x:Reference ListOfSeries}}" 
+                                             CommandParameter="{Binding .}" 
+                                             Text="Delete" IsDestructive="True"
+                                             
+                                             />
+                                </ViewCell.ContextActions>
                                 <StackLayout Orientation="Horizontal" Margin="20,0,0,0" VerticalOptions="Center">
                                     <Label Text="{Binding Weight}"/>
-                                    <Label Text="x"/>
+                                    <Label Text="[kg]  x"/>
                                     <Label Text="{Binding Reps}"/>
                                 </StackLayout>
                             </ViewCell>

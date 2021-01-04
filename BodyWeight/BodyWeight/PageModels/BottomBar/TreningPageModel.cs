@@ -26,11 +26,22 @@ namespace BodyWeight.PageModels
              public int Day { get; set; } = DateTime.Now.Day;
              public int Month { get; set; } = DateTime.Now.Month;
              public int Year { get; set; } = DateTime.Now.Year;
-            public int DateIterator { get; set; } = 0;
-            public DayOfWeek DayName { get; set; } = DateTime.Now.DayOfWeek;
+             public int DateIterator { get; set; } = 0;
+             public DayOfWeek DayName { get; set; } = DateTime.Now.DayOfWeek;
              public string ActualDateText { get; set; } = DateTime.Now.ToShortDateString();
              public string ActualDayText { get; set; } = "Today";
-             public string PreviousDayText { get; set; } = "";
+
+            private DateTime mainDate= DateTime.Now;
+
+            public DateTime MainDate
+            {
+                get { return mainDate; }
+                set { 
+                        mainDate = value;
+                        UpdateDate();
+            }
+            }
+            public string PreviousDayText { get; set; } = "";
              public string NextDayText { get; set; } = "";
              public Account User { get; set; }
              public string PlanText { get; set; } = "";
@@ -43,19 +54,18 @@ namespace BodyWeight.PageModels
 
         #region Commands
 
-        public Command NextDayCommand => new Command(() =>
-        {
-            //Day += 1;
-            DateIterator++;
-            UpdateDate();
 
+
+        private bool usedNextDayCommand = false;
+        private bool usedPreviousDayCommand = false;
+
+        public Command NextDayCommand => new Command(() =>
+        {          
+            MainDate = MainDate.AddDays(+1);
         });
         public Command PreviousDayCommand => new Command(() =>
         {
-            //Day -= 1;
-            DateIterator--;
-            UpdateDate();
-
+            MainDate = MainDate.AddDays(-1);
         });
         public Command AddPlanCommand => new Command(async() =>
         {
@@ -64,30 +74,30 @@ namespace BodyWeight.PageModels
         });
         #endregion
 
-    
+       
 
         private void UpdateDate()
         {
-
-            DateTime dateTime = DateTime.Now.AddDays(DateIterator);
-
-            if (dateTime.ToShortDateString()==DateTime.Now.ToShortDateString())
+            
+            if (MainDate.ToShortDateString() == DateTime.Now.ToShortDateString())
             {
-                ActualDateText = dateTime.ToShortDateString();
+                ActualDateText = MainDate.ToShortDateString();
                 ActualDayText = "Today";
             }
             else
             {
-                ActualDateText = dateTime.ToShortDateString();
-                ActualDayText = dateTime.DayOfWeek.ToString();
+                ActualDateText = MainDate.ToShortDateString();
+                ActualDayText = MainDate.DayOfWeek.ToString();
             }
 
             if (Session.LoggedUser.Plans != null)
             {
                 GetPlanForSpecficDay();
             }
-
         }
+       
+
+      
 
         #region Methods for data comunication
         public override void ReverseInit(object returnedData)

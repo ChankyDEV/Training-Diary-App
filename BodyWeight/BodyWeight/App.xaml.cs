@@ -13,14 +13,16 @@ namespace BodyWeight
         public App()
         {
             InitializeComponent();
-           
-            if(!String.IsNullOrEmpty(Preferences.Get("MyFirebaseRefreshToken", "")))
+
+            FreshIOC.Container.Register<IAuth, AuthRepository>();
+
+            if (!String.IsNullOrEmpty(Preferences.Get("MyFirebaseRefreshToken", "")))
             {
                 MainPage = new FreshNavigationContainer(FreshPageModelResolver.ResolvePageModel<StartingPageModel>());
             }
             else
             {
-                MainPage = new FreshNavigationContainer(FreshPageModelResolver.ResolvePageModel<MainPageModel>(Id,new MainPageModel(new AuthRepository())));
+                MainPage = new FreshNavigationContainer(FreshPageModelResolver.ResolvePageModel<MainPageModel>());
             }
            
            

@@ -29,28 +29,45 @@ namespace BodyWeight.PageModels.PlansAndTrainings
         public bool Saturday { get; set; } = false;
         public bool Sunday { get; set; } = false;
 
+        public object ItemToBeRemoved { get; set; }
+
         public string XD { get; set; } = "";
         public ObservableCollection<Excercise> Excercises { get; set; }
 
- 
+        public ICommand RemoveCommand { get; set; }
 
 
         public AddPlanPageModel()
         {
             
             ActualCreatedPlan = new Plan();
-            Excercises = new ObservableCollection<Excercise>();
+            Excercises = new ObservableCollection<Excercise>(); 
+            
+            RemoveCommand = new Command(RemoveAction);
         }
+
+
+       
+
         public Command AddExcerciseCommand => new Command(async () =>
         {
             await CoreMethods.PushPageModel<AddExcercisePageModel>();
 
         });
-        public Command RemoveCommand => new Command( () =>
-        {
-            Excercises.Remove(Excercises.Last());
+        
+       
 
-        });
+        private void RemoveAction(object obj)
+        {
+
+            Excercise excercise = obj as Excercise;
+
+            if (excercise != null)
+            {
+                Excercises.Remove(excercise);
+            }
+        }
+
         public Command AddPlanCommand => new Command(async () =>
         {
 

@@ -8,19 +8,26 @@
              >
     <ContentPage.Content>
         <Grid>
+            <ActivityIndicator VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"  IsRunning="{Binding IsLoading}" />
+            <Grid IsVisible="{Binding IsHistoryVisable}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="10*"/>
             </Grid.RowDefinitions>
 
-            <Image Source="leftArrow" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0" Scale="0.5"  >
-                <Image.GestureRecognizers>
+            <Frame Grid.Row="0" HasShadow="False"  BackgroundColor="WhiteSmoke" HorizontalOptions="Start" Padding="10,0,10,0">
+                <Image Source="leftArrow" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Scale="0.5" />
+                <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding GoBackCommand}"/>
-                </Image.GestureRecognizers>
-            </Image>
+                </Frame.GestureRecognizers>
+            </Frame>
             <Label Text="History"  HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="Medium"/>
 
-                <controls:ClickableListView ItemsSource="{Binding TrainingHistory}" Grid.Row="1" SelectionMode="None" SeparatorVisibility="None" HasUnevenRows="True" >
+
+            <Label Grid.Row="1" Text="{Binding Placeholder}" FontSize="Large" FontAttributes="Bold" HorizontalTextAlignment="Center"
+                   HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center"/>
+
+            <controls:ClickableListView ItemsSource="{Binding TrainingHistory}" Grid.Row="1" SelectionMode="None" SeparatorVisibility="None" HasUnevenRows="True" >
                     <controls:ClickableListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -100,5 +107,7 @@
             
 
         </Grid>
+        </Grid>
+        
     </ContentPage.Content>
 </ContentPage>

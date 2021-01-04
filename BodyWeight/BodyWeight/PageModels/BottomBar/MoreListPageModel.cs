@@ -16,7 +16,9 @@ namespace BodyWeight.PageModels
         public Command LogOutCommand => new Command(async() =>
         {
             Preferences.Remove("MyFirebaseRefreshToken");
-            await App.Current.MainPage.Navigation.PopToRootAsync();
+            await CoreMethods.PushPageModel<MainPageModel>();
+            CoreMethods.RemoveFromNavigation<StartingPageModel>(true);
+            
 
         });
 

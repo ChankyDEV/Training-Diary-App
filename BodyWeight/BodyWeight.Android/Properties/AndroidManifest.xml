@@ -1,15 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.company.bodyweight">
-    <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="28" />
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.company.bodyweight" android:installLocation="auto">
+	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="28" />
 	<uses-permission android:name="android.permission.CAMERA" />
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-	<application android:label="BodyWeight.Android"></application>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-<meta-data
-    android:name="firebase_messaging_auto_init_enabled"
-    android:value="false" />
-<meta-data
-    android:name="firebase_analytics_collection_enabled"
-    android:value="false" />
+	<application android:label="Training Diary" android:icon="@drawable/fitness"></application>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<meta-data android:name="firebase_messaging_auto_init_enabled" android:value="false" />
+	<meta-data android:name="firebase_analytics_collection_enabled" android:value="false" />
 </manifest>

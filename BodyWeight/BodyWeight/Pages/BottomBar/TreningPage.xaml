@@ -7,8 +7,10 @@
              BackgroundColor="WhiteSmoke"
              x:Class="BodyWeight.Pages.TreningPage">
     <ContentPage.Content>
-        <StackLayout>
-            <StackLayout VerticalOptions="Start">
+        <Grid>
+            <ActivityIndicator VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"  IsRunning="{Binding IsLoading}" />
+            <StackLayout IsVisible="{Binding IsScreenVisable}" >
+                            <StackLayout VerticalOptions="Start">
                 <Frame HasShadow="true" Padding="0" BackgroundColor="WhiteSmoke" >
                     <Grid  HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Padding="{Binding HeaderPadding}" >
                         <Grid.ColumnDefinitions>
@@ -22,22 +24,26 @@
                             <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
 
-                         <Image Grid.Column="0" Source="leftArrow" VerticalOptions="Center" WidthRequest="20" HeightRequest="20" HorizontalOptions="StartAndExpand">
-                              <Image.GestureRecognizers>
-                                  <TapGestureRecognizer Command="{Binding PreviousDayCommand}"/>
-                              </Image.GestureRecognizers>
-                          </Image>
-                          <Label Grid.Column="1" Text="{Binding PreviousDayText}" TextColor="Black" FontSize="Micro" HorizontalTextAlignment="Start" VerticalTextAlignment="End" FontAttributes="Bold"/>
-                          <StackLayout Grid.Column="2">
-                            <Label Text="{Binding ActualDateText}" TextColor="#ea7571" FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold"/>
-                            <Label Text="{Binding ActualDayText}" TextColor="Black" FontSize="Small" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold"/>
-                          </StackLayout>
-                        <Label  Grid.Column="3" Text="{Binding NextDayText}" TextColor="Black" FontSize="Micro" HorizontalTextAlignment="End" VerticalTextAlignment="End" FontAttributes="Bold"/>
-                           <Image Grid.Column="4"  Source="rightArrow" WidthRequest="20" HeightRequest="20" VerticalOptions="Center"  HorizontalOptions="EndAndExpand">
-                              <Image.GestureRecognizers>
-                                  <TapGestureRecognizer Command="{Binding NextDayCommand}"/>
-                              </Image.GestureRecognizers>
-                          </Image>
+                        
+                        
+                        <Frame Grid.Column="0" HasShadow="False" Padding="0" BackgroundColor="WhiteSmoke" >
+                            <Image Source="leftArrow" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Scale="0.7" />
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding PreviousDayCommand}"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                        <Label Grid.Column="1" Text="{Binding PreviousDayText}" TextColor="Black" FontSize="Micro" HorizontalTextAlignment="Start" VerticalTextAlignment="End" FontAttributes="Bold"/>
+                        <StackLayout Grid.Column="2">
+                                <DatePicker Date="{Binding MainDate}"  />
+                                <Label Text="{Binding ActualDayText}" TextColor="Black" FontSize="Small" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold"/>
+                        </StackLayout>
+                        <Frame Grid.Column="4" HasShadow="False" Padding="0" BackgroundColor="WhiteSmoke" >
+                            <Image Source="rightArrow" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Scale="0.7" />
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding NextDayCommand}"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                            
                         
                     </Grid>
                 </Frame>
@@ -94,13 +100,15 @@
             </Grid>
             <!--BODY-->
 
-
-            <Label Text="Add plan" FontSize="Medium" TextColor="#ea7571" HorizontalOptions="Center" VerticalOptions="EndAndExpand" Margin="0,0,0,30"  >
+                
+                <Label Text="Add plan" FontSize="Medium" TextColor="#ea7571" HorizontalOptions="Center" VerticalOptions="EndAndExpand" Margin="0,0,0,30"  >
                         <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding AddPlanCommand}" />
                     </Label.GestureRecognizers>
                  </Label>
          
-        </StackLayout>
+            </StackLayout>
+
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
