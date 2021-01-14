@@ -78,7 +78,7 @@ namespace BodyWeight
            {
                Plan=i.Object.Plan,
                Date=i.Object.Date,
-               TodayExcercises=i.Object.TodayExcercises
+               TodayExcercises=i.Object.TodayExcercises             
            }).ToList();
 
         }

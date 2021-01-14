@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:controls="clr-namespace:BodyWeight.Helpers"
+             x:Class="BodyWeight.Pages.ProfileAndHistory.HistoryDetailsPage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="10*"/>
+            </Grid.RowDefinitions>
+
+            <Frame Grid.Row="0" HasShadow="False"  BackgroundColor="Transparent" HorizontalOptions="Start" Padding="10,0,20,0">
+                <Image Source="leftArrow" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Scale="0.5" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding GoBackCommand}"/>
+                </Frame.GestureRecognizers>
+            </Frame>
+            <Label Text="{Binding TrainingDate}"  HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="Medium"/>
+
+            <controls:ClickableListView x:Name="ListOfExs" Grid.Row="1" BackgroundColor="Transparent" 
+                      ItemsSource="{Binding Excercises}"  
+                      
+                      HasUnevenRows="True" VerticalOptions="Start" >
+                <controls:ClickableListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Expander Margin="0,10,0,0" >
+                                <Expander.Header>
+                                    <Frame Padding="5" BackgroundColor="#ea7571">
+                                        <Label Text="{Binding ExcerciseName}" FontSize="Medium" 
+                                           FontAttributes="Bold" TextColor="White" HorizontalOptions="Center"  />
+                                    </Frame>
+                                </Expander.Header>
+                                <ListView ItemsSource="{Binding Series}" IsEnabled="False" HeightRequest="{Binding Height}">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <StackLayout Margin="20,0,0,0" Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                                                    <Label Text="{Binding Weight}"/>
+                                                    <Label Text="kg"/>
+                                                    <Label Text="x"/>
+                                                    <Label Text="{Binding Reps}"/>
+                                                </StackLayout>
+                                            </ViewCell>
+
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </Expander>
+                        </ViewCell>
+                    </DataTemplate>
+                </controls:ClickableListView.ItemTemplate>
+            </controls:ClickableListView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

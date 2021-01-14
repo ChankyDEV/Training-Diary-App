@@ -6,10 +6,13 @@ namespace BodyWeight.Models
 {
     public class Excercise
     {
+        private int rowHeight = 60;
+
         public string ExcerciseName { get; set; } = " ";
         public int NumberOfSeries { get; set; } = 0;
         public int Repetitions { get; set; }
         public List<Serie> Series { get; set; }
+        public int Height { get; set; } 
 
         public Excercise(string excerciseName,int numberOfSeries,int repetitions)
         {           
@@ -23,12 +26,19 @@ namespace BodyWeight.Models
             ExcerciseName = excerciseName;
             NumberOfSeries = numberOfSeries;
             Repetitions = repetitions;
-      
+            
         }
 
         public Excercise()
         {
 
         }
+
+
+        public void PrepareHeight()
+        {
+            Height = rowHeight * Series.Count;
+        }
+
     }
 }

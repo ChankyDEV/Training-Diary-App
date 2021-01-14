@@ -56,8 +56,6 @@ namespace BodyWeight.PageModels
 
 
 
-        private bool usedNextDayCommand = false;
-        private bool usedPreviousDayCommand = false;
 
         public Command NextDayCommand => new Command(() =>
         {          

@@ -86,6 +86,7 @@ namespace BodyWeight.PageModels.PlansAndTrainings
             if(Series.Count!=0)
             {
                 Excercise.Series = Series.ToList();
+                Excercise.PrepareHeight();
                 await CoreMethods.PopPageModel(Excercise);
             }
             else

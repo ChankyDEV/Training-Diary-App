@@ -34,7 +34,7 @@
                         </Frame>
                         <Label Grid.Column="1" Text="{Binding PreviousDayText}" TextColor="Black" FontSize="Micro" HorizontalTextAlignment="Start" VerticalTextAlignment="End" FontAttributes="Bold"/>
                         <StackLayout Grid.Column="2">
-                                <DatePicker Date="{Binding MainDate}"  />
+                                <DatePicker Date="{Binding MainDate}" HorizontalOptions="Center" />
                                 <Label Text="{Binding ActualDayText}" TextColor="Black" FontSize="Small" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold"/>
                         </StackLayout>
                         <Frame Grid.Column="4" HasShadow="False" Padding="0" BackgroundColor="WhiteSmoke" >

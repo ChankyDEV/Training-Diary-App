@@ -51,8 +51,11 @@ namespace BodyWeight.PageModels.PlansAndTrainings
 
         public Command AcceptTrainingCommand => new Command(async() =>
         {
-     
-            await CoreMethods.PopPageModel(TodaysTraining);
+            if (TodaysTraining.TodayExcercises.Count!=0)
+            {
+                await CoreMethods.PopPageModel(TodaysTraining);
+            }
+            
         });
 
         public Command ItemListClickedCommand => new Command(async(item) =>

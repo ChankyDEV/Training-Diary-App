@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using BodyWeight.Models;
 using FreshMvvm;
 using Xamarin.Forms;
@@ -14,11 +16,31 @@ namespace BodyWeight.PageModels.ProfileAndHistory
         public bool IsLoading { get; set; } = true;
         public bool IsHistoryVisable { get; set; } = false;
         public string Placeholder { get; set; } = "";
-        public HistoryPageModel()
+        public int Height { get; set; } = 0;
+        public bool IsExpanded { get; set; } = false;
+
+        public ICommand ItemClickedCommand
         {
-                 
+            get
+            {
+                return new Command(async (item) =>
+                {
+                    var training = item as Training;
+                    await CoreMethods.PushPageModel<HistoryDetailsPageModel>(training);
+                    
+                });
+            }
         }
-       
+
+        protected override void ViewIsDisappearing(object sender, EventArgs e)
+        {
+            base.ViewIsDisappearing(sender, e);
+            MessagingCenter.Unsubscribe<EventArgs>(this, "Item Expanded");
+        }
+
+        
+     
+
 
         public Command GoBackCommand => new Command(async () =>
         {
@@ -26,13 +48,16 @@ namespace BodyWeight.PageModels.ProfileAndHistory
 
         });
 
+        
 
         protected override void ViewIsAppearing(object sender, EventArgs e)
         {
-            GetTrainingsHistory();
+            
+             new Action(async () => await GetTrainingsHistory())();
         }
 
-        private async void GetTrainingsHistory()
+
+        private async Task GetTrainingsHistory()
         {
             try
             {
@@ -41,14 +66,15 @@ namespace BodyWeight.PageModels.ProfileAndHistory
                 {
                     Placeholder = "";
                     ToObservable(temporaryList);
+                    IsLoading = false;
+                    IsHistoryVisable = true;
                 }
                 else
                 {
                     TrainingHistory = new ObservableCollection<Training>();
                     Placeholder= "Ups... Its empty\nDo some trainings to see your progress here";
                 }
-                IsLoading = false;
-                IsHistoryVisable = true;
+                
                 
             }
             catch(Exception ex)
@@ -61,6 +87,8 @@ namespace BodyWeight.PageModels.ProfileAndHistory
             
             
         }
+
+      
 
         private void ToObservable(List<Training> temporaryList)
         {
